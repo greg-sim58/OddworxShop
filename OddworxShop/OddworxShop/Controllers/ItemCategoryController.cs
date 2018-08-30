@@ -10,107 +10,107 @@ using OddworxShop.Models;
 
 namespace OddworxShop.Controllers
 {
-    public class UserAccountController : Controller
+    public class ItemCategoryController : Controller
     {
         private OddworxShopContext db = new OddworxShopContext();
 
-        // GET: UserAccount
+        // GET: ItemCategory
         public ActionResult Index()
         {
-            return View(db.UserAccounts.ToList());
+            return View(db.ItemCategories.ToList());
         }
 
-        // GET: UserAccount/Details/5
+        // GET: ItemCategory/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            UserAccount userAccount = db.UserAccounts.Find(id);
-            if (userAccount == null)
+            ItemCategory itemCategory = db.ItemCategories.Find(id);
+            if (itemCategory == null)
             {
                 return HttpNotFound();
             }
-            return View(userAccount);
+            return View(itemCategory);
         }
 
-        // GET: UserAccount/Create
+        // GET: ItemCategory/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: UserAccount/Create
+        // POST: ItemCategory/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,Description,CreatedAt,CreatedBy,LastModifiedAt,LastModifiedBy,IsActive")] UserAccount userAccount)
+        public ActionResult Create([Bind(Include = "Id,Name,Description,Parent")] ItemCategory itemCategory)
         {
             if (ModelState.IsValid)
             {
-                db.UserAccounts.Add(userAccount);
+                db.ItemCategories.Add(itemCategory);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(userAccount);
+            return View(itemCategory);
         }
 
-        // GET: UserAccount/Edit/5
+        // GET: ItemCategory/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            UserAccount userAccount = db.UserAccounts.Find(id);
-            if (userAccount == null)
+            ItemCategory itemCategory = db.ItemCategories.Find(id);
+            if (itemCategory == null)
             {
                 return HttpNotFound();
             }
-            return View(userAccount);
+            return View(itemCategory);
         }
 
-        // POST: UserAccount/Edit/5
+        // POST: ItemCategory/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,Description,CreatedAt,CreatedBy,LastModifiedAt,LastModifiedBy,IsActive")] UserAccount userAccount)
+        public ActionResult Edit([Bind(Include = "Id,Name,Description,Parent")] ItemCategory itemCategory)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(userAccount).State = EntityState.Modified;
+                db.Entry(itemCategory).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(userAccount);
+            return View(itemCategory);
         }
 
-        // GET: UserAccount/Delete/5
+        // GET: ItemCategory/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            UserAccount userAccount = db.UserAccounts.Find(id);
-            if (userAccount == null)
+            ItemCategory itemCategory = db.ItemCategories.Find(id);
+            if (itemCategory == null)
             {
                 return HttpNotFound();
             }
-            return View(userAccount);
+            return View(itemCategory);
         }
 
-        // POST: UserAccount/Delete/5
+        // POST: ItemCategory/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            UserAccount userAccount = db.UserAccounts.Find(id);
-            db.UserAccounts.Remove(userAccount);
+            ItemCategory itemCategory = db.ItemCategories.Find(id);
+            db.ItemCategories.Remove(itemCategory);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

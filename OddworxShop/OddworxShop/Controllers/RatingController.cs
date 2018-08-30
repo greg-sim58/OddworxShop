@@ -10,107 +10,107 @@ using OddworxShop.Models;
 
 namespace OddworxShop.Controllers
 {
-    public class UserAccountController : Controller
+    public class RatingController : Controller
     {
         private OddworxShopContext db = new OddworxShopContext();
 
-        // GET: UserAccount
+        // GET: Rating
         public ActionResult Index()
         {
-            return View(db.UserAccounts.ToList());
+            return View(db.Ratings.ToList());
         }
 
-        // GET: UserAccount/Details/5
+        // GET: Rating/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            UserAccount userAccount = db.UserAccounts.Find(id);
-            if (userAccount == null)
+            Rating rating = db.Ratings.Find(id);
+            if (rating == null)
             {
                 return HttpNotFound();
             }
-            return View(userAccount);
+            return View(rating);
         }
 
-        // GET: UserAccount/Create
+        // GET: Rating/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: UserAccount/Create
+        // POST: Rating/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,Description,CreatedAt,CreatedBy,LastModifiedAt,LastModifiedBy,IsActive")] UserAccount userAccount)
+        public ActionResult Create([Bind(Include = "Id,Name,Description,Stars,Date,CreatedAt,CreatedBy,LastModifiedAt,LastModifiedBy,IsActive")] Rating rating)
         {
             if (ModelState.IsValid)
             {
-                db.UserAccounts.Add(userAccount);
+                db.Ratings.Add(rating);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(userAccount);
+            return View(rating);
         }
 
-        // GET: UserAccount/Edit/5
+        // GET: Rating/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            UserAccount userAccount = db.UserAccounts.Find(id);
-            if (userAccount == null)
+            Rating rating = db.Ratings.Find(id);
+            if (rating == null)
             {
                 return HttpNotFound();
             }
-            return View(userAccount);
+            return View(rating);
         }
 
-        // POST: UserAccount/Edit/5
+        // POST: Rating/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,Description,CreatedAt,CreatedBy,LastModifiedAt,LastModifiedBy,IsActive")] UserAccount userAccount)
+        public ActionResult Edit([Bind(Include = "Id,Name,Description,Stars,Date,CreatedAt,CreatedBy,LastModifiedAt,LastModifiedBy,IsActive")] Rating rating)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(userAccount).State = EntityState.Modified;
+                db.Entry(rating).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(userAccount);
+            return View(rating);
         }
 
-        // GET: UserAccount/Delete/5
+        // GET: Rating/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            UserAccount userAccount = db.UserAccounts.Find(id);
-            if (userAccount == null)
+            Rating rating = db.Ratings.Find(id);
+            if (rating == null)
             {
                 return HttpNotFound();
             }
-            return View(userAccount);
+            return View(rating);
         }
 
-        // POST: UserAccount/Delete/5
+        // POST: Rating/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            UserAccount userAccount = db.UserAccounts.Find(id);
-            db.UserAccounts.Remove(userAccount);
+            Rating rating = db.Ratings.Find(id);
+            db.Ratings.Remove(rating);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

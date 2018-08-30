@@ -10,107 +10,107 @@ using OddworxShop.Models;
 
 namespace OddworxShop.Controllers
 {
-    public class UserAccountController : Controller
+    public class UserAccountTypeController : Controller
     {
         private OddworxShopContext db = new OddworxShopContext();
 
-        // GET: UserAccount
+        // GET: UserAccountType
         public ActionResult Index()
         {
-            return View(db.UserAccounts.ToList());
+            return View(db.UserAccountTypes.ToList());
         }
 
-        // GET: UserAccount/Details/5
+        // GET: UserAccountType/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            UserAccount userAccount = db.UserAccounts.Find(id);
-            if (userAccount == null)
+            UserAccountType userAccountType = db.UserAccountTypes.Find(id);
+            if (userAccountType == null)
             {
                 return HttpNotFound();
             }
-            return View(userAccount);
+            return View(userAccountType);
         }
 
-        // GET: UserAccount/Create
+        // GET: UserAccountType/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: UserAccount/Create
+        // POST: UserAccountType/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,Description,CreatedAt,CreatedBy,LastModifiedAt,LastModifiedBy,IsActive")] UserAccount userAccount)
+        public ActionResult Create([Bind(Include = "Id,Name,Description,Price,PaymentFrequency")] UserAccountType userAccountType)
         {
             if (ModelState.IsValid)
             {
-                db.UserAccounts.Add(userAccount);
+                db.UserAccountTypes.Add(userAccountType);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(userAccount);
+            return View(userAccountType);
         }
 
-        // GET: UserAccount/Edit/5
+        // GET: UserAccountType/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            UserAccount userAccount = db.UserAccounts.Find(id);
-            if (userAccount == null)
+            UserAccountType userAccountType = db.UserAccountTypes.Find(id);
+            if (userAccountType == null)
             {
                 return HttpNotFound();
             }
-            return View(userAccount);
+            return View(userAccountType);
         }
 
-        // POST: UserAccount/Edit/5
+        // POST: UserAccountType/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,Description,CreatedAt,CreatedBy,LastModifiedAt,LastModifiedBy,IsActive")] UserAccount userAccount)
+        public ActionResult Edit([Bind(Include = "Id,Name,Description,Price,PaymentFrequency")] UserAccountType userAccountType)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(userAccount).State = EntityState.Modified;
+                db.Entry(userAccountType).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(userAccount);
+            return View(userAccountType);
         }
 
-        // GET: UserAccount/Delete/5
+        // GET: UserAccountType/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            UserAccount userAccount = db.UserAccounts.Find(id);
-            if (userAccount == null)
+            UserAccountType userAccountType = db.UserAccountTypes.Find(id);
+            if (userAccountType == null)
             {
                 return HttpNotFound();
             }
-            return View(userAccount);
+            return View(userAccountType);
         }
 
-        // POST: UserAccount/Delete/5
+        // POST: UserAccountType/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            UserAccount userAccount = db.UserAccounts.Find(id);
-            db.UserAccounts.Remove(userAccount);
+            UserAccountType userAccountType = db.UserAccountTypes.Find(id);
+            db.UserAccountTypes.Remove(userAccountType);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

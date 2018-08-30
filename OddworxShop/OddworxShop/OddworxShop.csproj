@@ -180,13 +180,27 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ImageController.cs" />
+    <Compile Include="Controllers\ItemCategoryController.cs" />
+    <Compile Include="Controllers\ItemController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\RatingController.cs" />
+    <Compile Include="Controllers\ShopCategoryController.cs" />
+    <Compile Include="Controllers\ShopController.cs" />
     <Compile Include="Controllers\UserAccountController.cs" />
+    <Compile Include="Controllers\UserAccountTypeController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Account.cs" />
-    <Compile Include="Models\AccountType.cs" />
+    <Compile Include="Migrations\201808301802060_initial-oddworx-1.cs" />
+    <Compile Include="Migrations\201808301802060_initial-oddworx-1.Designer.cs">
+      <DependentUpon>201808301802060_initial-oddworx-1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\OddworxShopContext.cs" />
+    <Compile Include="Models\UserAccount.cs" />
+    <Compile Include="Models\UserAccountType.cs" />
     <Compile Include="Models\Image.cs" />
     <Compile Include="Models\Item.cs" />
     <Compile Include="Models\ItemCategory.cs" />
@@ -304,6 +318,46 @@
     <Content Include="Views\UserAccount\Details.cshtml" />
     <Content Include="Views\UserAccount\Edit.cshtml" />
     <Content Include="Views\UserAccount\Index.cshtml" />
+    <Content Include="Views\Image\Create.cshtml" />
+    <Content Include="Views\Image\Delete.cshtml" />
+    <Content Include="Views\Image\Details.cshtml" />
+    <Content Include="Views\Image\Edit.cshtml" />
+    <Content Include="Views\Image\Index.cshtml" />
+    <Content Include="Views\Item\Create.cshtml" />
+    <Content Include="Views\Item\Delete.cshtml" />
+    <Content Include="Views\Item\Details.cshtml" />
+    <Content Include="Views\Item\Edit.cshtml" />
+    <Content Include="Views\Item\Index.cshtml" />
+    <Content Include="Views\ItemCategory\Create.cshtml" />
+    <Content Include="Views\ItemCategory\Delete.cshtml" />
+    <Content Include="Views\ItemCategory\Details.cshtml" />
+    <Content Include="Views\ItemCategory\Edit.cshtml" />
+    <Content Include="Views\ItemCategory\Index.cshtml" />
+    <Content Include="Views\Rating\Create.cshtml" />
+    <Content Include="Views\Rating\Delete.cshtml" />
+    <Content Include="Views\Rating\Details.cshtml" />
+    <Content Include="Views\Rating\Edit.cshtml" />
+    <Content Include="Views\Rating\Index.cshtml" />
+    <Content Include="Views\Shop\Create.cshtml" />
+    <Content Include="Views\Shop\Delete.cshtml" />
+    <Content Include="Views\Shop\Details.cshtml" />
+    <Content Include="Views\Shop\Edit.cshtml" />
+    <Content Include="Views\Shop\Index.cshtml" />
+    <Content Include="Views\ShopCategory\Create.cshtml" />
+    <Content Include="Views\ShopCategory\Delete.cshtml" />
+    <Content Include="Views\ShopCategory\Details.cshtml" />
+    <Content Include="Views\ShopCategory\Edit.cshtml" />
+    <Content Include="Views\ShopCategory\Index.cshtml" />
+    <Content Include="Views\UserAccountType\Create.cshtml" />
+    <Content Include="Views\UserAccountType\Delete.cshtml" />
+    <Content Include="Views\UserAccountType\Details.cshtml" />
+    <Content Include="Views\UserAccountType\Edit.cshtml" />
+    <Content Include="Views\UserAccountType\Index.cshtml" />
+    <Content Include="Views\User\Create.cshtml" />
+    <Content Include="Views\User\Delete.cshtml" />
+    <Content Include="Views\User\Details.cshtml" />
+    <Content Include="Views\User\Edit.cshtml" />
+    <Content Include="Views\User\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -315,6 +369,11 @@
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
     <Content Include="Scripts\jquery-2.1.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201808301802060_initial-oddworx-1.resx">
+      <DependentUpon>201808301802060_initial-oddworx-1.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<OddworxShop.Models.UserAccount>
+﻿@model IEnumerable<OddworxShop.Models.Shop>
 
 @{
     ViewBag.Title = "Index";
@@ -18,19 +18,13 @@
             @Html.DisplayNameFor(model => model.Description)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.CreatedAt)
+            @Html.DisplayNameFor(model => model.ContactEmail)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.CreatedBy)
+            @Html.DisplayNameFor(model => model.ContactPhone)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.LastModifiedAt)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.LastModifiedBy)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.IsActive)
+            @Html.DisplayNameFor(model => model.WebSite)
         </th>
         <th></th>
     </tr>
@@ -44,19 +38,13 @@
             @Html.DisplayFor(modelItem => item.Description)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.CreatedAt)
+            @Html.DisplayFor(modelItem => item.ContactEmail)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.CreatedBy)
+            @Html.DisplayFor(modelItem => item.ContactPhone)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.LastModifiedAt)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LastModifiedBy)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.IsActive)
+            @Html.DisplayFor(modelItem => item.WebSite)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |

@@ -30,6 +30,10 @@ namespace OddworxShop.Models
             return new ApplicationDbContext();
         }
 
-        public System.Data.Entity.DbSet<OddworxShop.Models.Account> Accounts { get; set; }
+        public System.Data.Entity.DbSet<OddworxShop.Models.UserAccount> Accounts { get; set; }
+
+        public System.Data.Entity.DbSet<OddworxShop.Models.Shop> Shops { get; set; }
+
+        public System.Data.Entity.DbSet<OddworxShop.Models.UserAccountType> AccountTypes { get; set; }
     }
 }

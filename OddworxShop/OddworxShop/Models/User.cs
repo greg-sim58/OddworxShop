@@ -14,6 +14,6 @@ namespace OddworxShop.Models
         public string AboutMe { get; set; }
         public string Location { get; set; }
 
-        public virtual Account Account { get; set; }
+        public virtual UserAccount Account { get; set; }
     }
 }

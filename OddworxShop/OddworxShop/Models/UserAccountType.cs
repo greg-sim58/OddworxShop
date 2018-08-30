@@ -5,7 +5,7 @@ using System.Web;
 
 namespace OddworxShop.Models
 {
-    public class AccountType
+    public class UserAccountType
     {
         public int Id { get; set; }
         public string Name { get; set; }

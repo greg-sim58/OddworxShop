@@ -1,4 +1,4 @@
-﻿@model IEnumerable<OddworxShop.Models.UserAccount>
+﻿@model IEnumerable<OddworxShop.Models.Rating>
 
 @{
     ViewBag.Title = "Index";
@@ -16,6 +16,12 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Stars)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Date)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.CreatedAt)
@@ -42,6 +48,12 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Stars)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Date)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.CreatedAt)

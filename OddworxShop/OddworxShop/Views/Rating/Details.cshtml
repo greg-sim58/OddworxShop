@@ -1,4 +1,4 @@
-﻿@model OddworxShop.Models.UserAccount
+﻿@model OddworxShop.Models.Rating
 
 @{
     ViewBag.Title = "Details";
@@ -7,7 +7,7 @@
 <h2>Details</h2>
 
 <div>
-    <h4>UserAccount</h4>
+    <h4>Rating</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -24,6 +24,22 @@
 
         <dd>
             @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Stars)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Stars)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Date)
         </dd>
 
         <dt>
