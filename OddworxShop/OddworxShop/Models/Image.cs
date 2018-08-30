@@ -5,12 +5,11 @@ using System.Web;
 
 namespace OddworxShop.Models
 {
-    public class Account : Base
+    public class Image
     {
         public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-
-        public virtual AccountType AccountType { get; set; }
+        public string Data { get; set; }
     }
 }

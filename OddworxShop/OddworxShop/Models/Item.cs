@@ -5,12 +5,15 @@ using System.Web;
 
 namespace OddworxShop.Models
 {
-    public class Account : Base
+    public class Item : Base
     {
         public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
+        public decimal Price { get; set; }
 
-        public virtual AccountType AccountType { get; set; }
+        public ItemCategory Category { get; set; }
+        public Image Image { get; set; }
+        public virtual List<Rating> Ratings { get; set; }
     }
 }

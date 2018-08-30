@@ -29,5 +29,7 @@ namespace OddworxShop.Models
         {
             return new ApplicationDbContext();
         }
+
+        public System.Data.Entity.DbSet<OddworxShop.Models.Account> Accounts { get; set; }
     }
 }
