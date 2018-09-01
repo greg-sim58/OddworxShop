@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title - Oddworx Shop Admin</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     <link href="~/Content/materialize.min.css" rel="stylesheet" />
@@ -17,11 +17,12 @@
             <div class="nav-wrapper container-fluid">
                 <a id="logo-container" href="#" class="brand-logo">Logo</a>
                 <ul class="right hide-on-med-and-down">
-                    <li><a href="#">Navbar Link</a></li>
-                    <li><a href="#">Navbar Link</a></li>
-                    <li>@Html.ActionLink("User Account Types", "Index", "UserAccount", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
-                    <li>@Html.ActionLink("User Accounts", "Index", "UserAccount", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
-                    <li>@Html.ActionLink("Shops", "Index", "Shop", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+                    @if (@User.Identity.IsAuthenticated)
+                    {
+                        <li>@Html.ActionLink("User Account Types", "Index", "UserAccount", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+                        <li>@Html.ActionLink("User Accounts", "Index", "UserAccount", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+                        <li>@Html.ActionLink("Shops", "Index", "Shop", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+                    }
                     <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
                     <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
                 </ul>
@@ -40,7 +41,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <p>&copy; @DateTime.Now.Year - Oddworx Shop Admin</p>
         </footer>
     </div>
 
