@@ -403,6 +403,12 @@ namespace OddworxShop.Admin.Controllers
             return View();
         }
 
+        public ActionResult LogOut()
+        {
+            AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+            return RedirectToAction("Index", "Home");
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)
