@@ -6,6 +6,7 @@
     <title>@ViewBag.Title - Oddworx Shop Admin</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="~/Content/materialize.min.css" rel="stylesheet" />
     <link href="~/Content/Site.css" rel="stylesheet" />
     <link href="~/Content/style.css" rel="stylesheet" />
@@ -15,7 +16,7 @@
     <div class="container-fluid">
         <nav class="light-blue lighten-1" role="navigation">
             <div class="nav-wrapper container-fluid">
-                <a id="logo-container" href="#" class="brand-logo">Logo</a>
+                <a id="logo-container" href="/Home/Index" class="brand-logo">Logo</a>
                 <ul class="right hide-on-med-and-down">
                     @if (@User.Identity.IsAuthenticated)
                     {
@@ -25,26 +26,26 @@
                         <li>
                             @*@Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })*@
                         </li>
-                    <li>@Html.ActionLink("Log out", "LogOut", "Account")</li>
-                }
-                else
-                {
-                    <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
-                    <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
-                }
-                    </ul>
-                    <ul id="nav-mobile" class="sidenav">
-                        @if (@User.Identity.IsAuthenticated)
-                        {
-                            <li>@Html.ActionLink("User Account Types", "Index", "UserAccount", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
-                            <li>@Html.ActionLink("User Accounts", "Index", "UserAccount", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
-                            <li>@Html.ActionLink("Shops", "Index", "Shop", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
-                        }
+                        <li>@Html.ActionLink("Log out", "LogOut", "Account")</li>
+                    }
+                    else
+                    {
                         <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
                         <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
-                    </ul>
-                    <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-                </div>
+                    }
+                </ul>
+                <ul id="nav-mobile" class="sidenav">
+                    @if (@User.Identity.IsAuthenticated)
+                    {
+                        <li>@Html.ActionLink("User Account Types", "Index", "UserAccount", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+                        <li>@Html.ActionLink("User Accounts", "Index", "UserAccount", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+                        <li>@Html.ActionLink("Shops", "Index", "Shop", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+                    }
+                    <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+                    <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+                </ul>
+                <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+            </div>
         </nav>
     </div>
 
@@ -60,7 +61,8 @@
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
     <script src="~/Scripts/jquery-3.3.1.min.js"></script>
-    <script src="~/Scripts/materialize/materialize.min.js"></script>
-    <script src="~/Scripts/materialize/init.js"></script>
+
+    <script src="~/Scripts/materialize.min.js"></script>
+    <script src="~/Scripts/init.js"></script>
 </body>
 </html>

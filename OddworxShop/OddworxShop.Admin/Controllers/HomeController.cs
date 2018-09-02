@@ -10,6 +10,10 @@ namespace OddworxShop.Admin.Controllers
     {
         public ActionResult Index()
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                return View("Home");
+            }
             return View();
         }
 
@@ -24,6 +28,11 @@ namespace OddworxShop.Admin.Controllers
         {
             ViewBag.Message = "Your contact page.";
 
+            return View();
+        }
+
+        public ActionResult Home()
+        {
             return View();
         }
     }
