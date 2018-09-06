@@ -5,7 +5,7 @@ using System.Web;
 
 namespace OddworxShop.Data.Models
 {
-    public class ItemCategory
+    public class ItemCategory :Base
     {
         public int Id { get; set; }
         public string Name { get; set; }

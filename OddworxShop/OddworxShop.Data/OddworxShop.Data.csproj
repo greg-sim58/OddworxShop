@@ -88,6 +88,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DAL\DataContext.cs" />
+    <Compile Include="Migrations\201809061637419_initial1.cs" />
+    <Compile Include="Migrations\201809061637419_initial1.Designer.cs">
+      <DependentUpon>201809061637419_initial1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Base.cs" />
     <Compile Include="Models\Image.cs" />
     <Compile Include="Models\Item.cs" />
@@ -100,7 +105,11 @@
     <Compile Include="Models\UserAccountType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201809061637419_initial1.resx">
+      <DependentUpon>201809061637419_initial1.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
