@@ -1,22 +1,22 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
 using OddworxShop.Data.DAL;
 using OddworxShop.Data.Models;
 using OddworxShop.Admin.ViewModels;
 
+
 namespace OddworxShop.Admin.Controllers
 {
+    [Authorize]
     public class ShopsController : Controller
     {
         private DataContext db = new DataContext();
 
         // GET: Shops
+        [Authorize]
         public ActionResult Index()
         {
             return View(db.Shops.ToList());
@@ -41,7 +41,7 @@ namespace OddworxShop.Admin.Controllers
         public ActionResult Create()
         {
             ShopsViewModel model = new ShopsViewModel();
-            
+
             return View(model);
         }
 
@@ -99,6 +99,8 @@ namespace OddworxShop.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
+                shop.LastModifiedAt = DateTime.Now;
+                shop.LastModifiedBy = 0;
                 db.Entry(shop).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
