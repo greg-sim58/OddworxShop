@@ -21,7 +21,7 @@
                     @if (@User.Identity.IsAuthenticated)
                     {
                         <li>@Html.ActionLink("Images", "Index", "Images", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
-                        <li>@Html.ActionLink("User Accounts", "Index", "UserAccount", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+                        <li>@Html.ActionLink("Users", "Index", "Users", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
                         <li>@Html.ActionLink("Shops", "Index", "Shops", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
                         <li>@Html.ActionLink("Shop Categories", "Index", "ShopCategories", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
                         <li>
