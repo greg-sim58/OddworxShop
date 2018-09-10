@@ -51,6 +51,12 @@ namespace OddworxShop.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
+                shopCategory.CreatedAt = DateTime.Now;
+                shopCategory.CreatedBy = 0;
+                shopCategory.LastModifiedAt = DateTime.Now;
+                shopCategory.LastModifiedBy = 0;
+                shopCategory.IsActive = true;
+
                 db.ShopCategories.Add(shopCategory);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -83,6 +89,9 @@ namespace OddworxShop.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
+                shopCategory.LastModifiedAt = DateTime.Now;
+                shopCategory.LastModifiedBy = 0;
+
                 db.Entry(shopCategory).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
