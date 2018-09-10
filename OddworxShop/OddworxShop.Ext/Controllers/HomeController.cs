@@ -4,17 +4,14 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace OddworxShop.Admin.Controllers
+
+namespace OddworxShop.Ext.Controllers
 {
     [Authorize]
     public class HomeController : Controller
     {
         public ActionResult Index()
         {
-            if (User.Identity.IsAuthenticated)
-            {
-                return View("Home");
-            }
             return View();
         }
 
@@ -29,12 +26,6 @@ namespace OddworxShop.Admin.Controllers
         {
             ViewBag.Message = "Your contact page.";
 
-            return View();
-        }
-
-        [Authorize]
-        public ActionResult Home()
-        {
             return View();
         }
     }

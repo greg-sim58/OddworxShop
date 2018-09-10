@@ -11,6 +11,7 @@ using OddworxShop.Data.Models;
 
 namespace OddworxShop.Admin.Controllers
 {
+    [Authorize]
     public class UserAccountTypesController : Controller
     {
         private DataContext db = new DataContext();

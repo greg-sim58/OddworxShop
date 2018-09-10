@@ -11,6 +11,7 @@ using OddworxShop.Data.Models;
 
 namespace OddworxShop.Admin.Controllers
 {
+    [Authorize]
     public class RatingsController : Controller
     {
         private DataContext db = new DataContext();
