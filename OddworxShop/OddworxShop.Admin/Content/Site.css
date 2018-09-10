@@ -28,7 +28,26 @@ textarea {
     color:#c62828 ;
 }
 
-.link {
-    color: rebeccapurple;
+/* unvisited link */
+a:link {
+    color: #d50000;
+    border-bottom : 1px #bdbdbd solid;
+}
 
+/* visited link */
+a:visited {
+    color: #d50000;
+    border-bottom : 1px #bdbdbd solid;
+}
+
+/* mouse over link */
+a:hover {
+    color:#b71c1c;
+    border-bottom: 1px #b71c1c solid;
+}
+
+/* selected link */
+a:active {
+    color: #d50000;
+    border-bottom : 1px #bdbdbd solid;
 }
