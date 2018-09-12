@@ -18,6 +18,7 @@
         <div class="nav-wrapper container-fluid">
             <a id="logo-container" href="#" class="brand-logo">Oddworx</a>
             <ul class="right hide-on-med-and-down">
+                <li>@Html.ActionLink("Send email", "Index", "PublicUser", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
                 <li>@Html.ActionLink("Open a shop on Oddworx", "OpenShop", "Shop", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
                 <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
                 <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>

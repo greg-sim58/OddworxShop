@@ -181,6 +181,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\PublicUserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -288,9 +289,11 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\PublicUser\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\User\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -301,6 +304,10 @@
     <Content Include="Scripts\jquery-2.1.1.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\OddworxShop.Common\OddworxShop.Common.csproj">
+      <Project>{71a7411b-0938-481c-8e33-61493d41c89c}</Project>
+      <Name>OddworxShop.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\OddworxShop.Data\OddworxShop.Data.csproj">
       <Project>{23d9de3d-98e8-46e9-accb-cbc90a5d6b2a}</Project>
       <Name>OddworxShop.Data</Name>
