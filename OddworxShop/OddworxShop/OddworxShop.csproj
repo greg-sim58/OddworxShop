@@ -200,7 +200,6 @@
     <Content Include="Content\materialize\font\material-design-icons\Material-Design-Icons.svg" />
     <Content Include="Content\style.css" />
     <Content Include="favicon.ico" />
-    <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\materialize\font\roboto\Roboto-Thin.woff2" />
@@ -296,9 +295,6 @@
     <Folder Include="Views\User\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
     <Content Include="Scripts\jquery-2.1.1.min.map" />
