@@ -19,6 +19,7 @@ namespace OddworxShop
         public Task SendAsync(IdentityMessage message)
         {
             // Plug in your email service here to send an email.
+            Common.EmailHelper.EmailSender.SendMail(null, null, "", message.ToString());
             return Task.FromResult(0);
         }
     }
