@@ -18,7 +18,20 @@
     <nav class="grey darken-4" role="navigation">
         <div class="nav-wrapper container">
             <a id="logo-container" href="#" class="brand-logo">Oddworx</a>
+
             <ul class="right hide-on-med-and-down">
+                <li>
+                    <div class="center row">
+                        <div class="col s12 ">
+                            <div class="row" id="topbarsearch">
+                                <div class="input-field col s6 s12">
+                                    <i class="material-icons prefix pin-top">search</i>
+                                    <input type="text" placeholder="search" id="autocomplete-input" class="autocomplete red-text">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
                 <li>@Html.ActionLink("Send email", "Index", "PublicUser", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
                 <li>@Html.ActionLink("Open a shop on Oddworx", "OpenShop", "Shop", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
                 <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
@@ -80,48 +93,48 @@
     </div>
 
     @*@Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
-    <script src="~/Scripts/jquery-2.1.1.js"></script>
-    <script src="~/Scripts/materialize.js"></script>
-    <script src="~/Scripts/init.js"></script>*@
+        @Scripts.Render("~/bundles/bootstrap")
+        @RenderSection("scripts", required: false)
+        <script src="~/Scripts/jquery-2.1.1.js"></script>
+        <script src="~/Scripts/materialize.js"></script>
+        <script src="~/Scripts/init.js"></script>*@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
 
     <script>
-    // Sidenav
-    const sideNav = document.querySelector('.sidenav');
-    M.Sidenav.init(sideNav, {});
+        // Sidenav
+        const sideNav = document.querySelector('.sidenav');
+        M.Sidenav.init(sideNav, {});
 
-    // Slider
-    const slider = document.querySelector('.slider');
-    M.Slider.init(slider, {
-      indicators: false,
-      height: 500,
-      transition: 500,
-      interval: 6000
-    });
+        // Slider
+        const slider = document.querySelector('.slider');
+        M.Slider.init(slider, {
+            indicators: false,
+            height: 500,
+            transition: 500,
+            interval: 6000
+        });
 
-    // Autocomplete
-    const ac = document.querySelector('.autocomplete');
-    M.Autocomplete.init(ac, {
-      data: {
-        "Aruba": null,
-        "Cancun Mexico": null,
-        "Hawaii": null,
-        "Florida": null,
-        "California": null,
-        "Jamacia": null,
-        "Europe": null,
-      }
-    });
+        // Autocomplete
+        const ac = document.querySelector('.autocomplete');
+        M.Autocomplete.init(ac, {
+            data: {
+                "Aruba": null,
+                "Cancun Mexico": null,
+                "Hawaii": null,
+                "Florida": null,
+                "California": null,
+                "Jamacia": null,
+                "Europe": null,
+            }
+        });
 
-    // Material Boxed
-    const mb = document.querySelectorAll('.materialboxed');
-    M.Materialbox.init(mb, {});
+        // Material Boxed
+        const mb = document.querySelectorAll('.materialboxed');
+        M.Materialbox.init(mb, {});
 
-    // ScrollSpy
-    const ss = document.querySelectorAll('.scrollspy');
-    M.ScrollSpy.init(ss, {});
+        // ScrollSpy
+        const ss = document.querySelectorAll('.scrollspy');
+        M.ScrollSpy.init(ss, {});
 
     </script>
 </body>
