@@ -19,9 +19,10 @@
             <a id="logo-container" href="#" class="brand-logo">Oddworx</a>
             <ul class="right hide-on-med-and-down">
                 <li>@Html.ActionLink("Send email", "Index", "PublicUser", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
-                <li>@Html.ActionLink("Open a shop on Oddworx", "OpenShop", "Shop", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+                <li>@Html.ActionLink("Open a shop on Oddworx", "Create", "Shop", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
                 <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
                 <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+                <li>@Html.ActionLink("Log out", "LogOff", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
             </ul>
             <ul id="nav-mobile" class="sidenav">
                 <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
