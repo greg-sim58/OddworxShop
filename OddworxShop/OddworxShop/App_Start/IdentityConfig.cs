@@ -22,7 +22,8 @@ namespace OddworxShop
             List<string> toList = new List<string>();
             toList.Add(message.Destination);
             List<string> ccList = new List<string>();
-            Common.EmailHelper.EmailSender.SendMail(toList, null, message.Subject, message.ToString());
+            Common.EmailHelper.EmailSender.SendMail(toList, null, message.Subject, message.Body);
+            //Common.EmailHelper.EmailSender.SendEmailSendGrid("greg@jitterbug.co.za", null, message.Subject, message.ToString());
             return Task.FromResult(0);
         }
     }

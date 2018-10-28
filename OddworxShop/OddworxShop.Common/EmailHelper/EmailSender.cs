@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
+using System.Net;
 using System.Net.Mail;
 using System.Web;
 
@@ -27,8 +28,16 @@ namespace OddworxShop.Common.EmailHelper
             {
                 string smtpHost = ConfigurationManager.AppSettings["SmtpHost"];
                 string fromAddress = ConfigurationManager.AppSettings["FromAddress"];
-
+                var credential = new NetworkCredential
+                {
+                    UserName = "apikey",  // replace with valid value
+                    Password = "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"  // replace with valid value
+                };
+                smtp.Credentials = credential;
                 smtp.Host = smtpHost;
+                smtp.Port = 587;
+                smtp.EnableSsl = true;
+                
 
                 using (MailMessage mail = new MailMessage())
                 {
@@ -95,7 +104,7 @@ namespace OddworxShop.Common.EmailHelper
 
         public static async void SendEmailSendGrid(string toAddresses, List<string> carbonCopies, string subject, string body)
         {
-            var apiKey = Environment.GetEnvironmentVariable(" SENDGRID_API_KEY");
+            var apiKey = "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";// Environment.GetEnvironmentVariable(" SENDGRID_API_KEY");
             var client = new SendGridClient(apiKey);
             var from = new EmailAddress("test@example.com", "Example User");
             subject = "Sending with SendGrid is Fun";
