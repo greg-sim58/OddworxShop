@@ -77,10 +77,16 @@ namespace OddworxShop.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,Description,ContactEmail,ContactPhone,WebSite,CreatedAt,CreatedBy,LastModifiedAt,LastModifiedBy,IsActive")] Shop shop)
+        public ActionResult Create([Bind(Include = "Id,Name,Description,ContactEmail,ContactPhone,WebSite")] Shop shop)
         {
             if (ModelState.IsValid)
             {
+                shop.CreatedAt = DateTime.Now;
+                shop.CreatedBy = 0;
+                shop.LastModifiedAt = DateTime.Now;
+                shop.LastModifiedBy = 0;
+                shop.IsActive = true;
+
                 db.Shops.Add(shop);
                 db.SaveChanges();
                 return RedirectToAction("Index");

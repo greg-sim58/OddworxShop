@@ -1,4 +1,6 @@
-﻿using System;
+﻿using SendGrid;
+using SendGrid.Helpers.Mail;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
@@ -81,7 +83,7 @@ namespace OddworxShop.Common.EmailHelper
                     }
 
                     foreach (var file in attachmentFilename)
-                        mail.Attachments.Add(new Attachment(file));
+                        mail.Attachments.Add(new System.Net.Mail.Attachment(file));
 
                     mail.IsBodyHtml = true;
                     mail.Body = "<span style=\"font-family:'Century Gothic'\" >" + body + "</span><br/><br/><br/>";
@@ -89,6 +91,23 @@ namespace OddworxShop.Common.EmailHelper
                     smtp.Send(mail);
                 }
             }
+        }
+
+        public static async void SendEmailSendGrid(string toAddresses, List<string> carbonCopies, string subject, string body)
+        {
+            var apiKey = Environment.GetEnvironmentVariable(" SENDGRID_API_KEY");
+            var client = new SendGridClient(apiKey);
+            var from = new EmailAddress("test@example.com", "Example User");
+            subject = "Sending with SendGrid is Fun";
+            var to = new EmailAddress("test@example.com", "Example User");
+            var plainTextContent = "and easy to do anywhere, even with C#";
+            var htmlContent = "<strong>and easy to do anywhere, even with C#</strong>";
+            var msg = MailHelper.CreateSingleEmail(from, to, subject, plainTextContent, htmlContent);
+            var response = await client.SendEmailAsync(msg);
+        }
+        public static void SendEmailSendGrid(List<string> toAddresses, List<string> carbonCopies, string subject, string body)
+        {
+
         }
     }
 }
