@@ -1,5 +1,5 @@
 ﻿@using Microsoft.AspNet.Identity
-    
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,6 +11,7 @@
     <!--Import materialize.css-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
     <link rel="stylesheet" href="css/main.css">
+    <link href="~/Content/Site.css" rel="stylesheet" />
     <script defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js" integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl"
             crossorigin="anonymous"></script>
 
@@ -23,42 +24,29 @@
 
             @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
             {
+                <ul class="right hide-on-med-and-down">
+                    @*<li>@Html.ActionLink("Home", "Index", "Home", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+                    <li>@Html.ActionLink("Send email", "Index", "PublicUser", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>*@
+                    <li>@Html.ActionLink("Open a shop on Oddworx", "OpenShop", "Shop", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
 
-            <ul class="right hide-on-med-and-down">
-                <li>
-                    <div class="center row">
-                        <div class="col s12 ">
-                            <div class="row" id="topbarsearch">
-                                <div class="input-field col s6 s12">
-                                    <i class="material-icons prefix pin-top">search</i>
-                                    <input type="text" placeholder="search" id="autocomplete-input" class="autocomplete red-text">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-                <li>@Html.ActionLink("Home", "Index", "Home", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
-                <li>@Html.ActionLink("Send email", "Index", "PublicUser", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
-                <li>@Html.ActionLink("Open a shop on Oddworx", "Create", "Shop", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li>
+                            @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+                        </li>
+                        <li><a href="javascript:document.getElementById('logoutForm').submit()">Sign Out</a></li>
+                    }
+                    else
+                    {
+                        <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+                        <li>@Html.ActionLink("Sign in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+                    }
 
-                @if (User.Identity.IsAuthenticated)
-                {
-                    <li>
-                        @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
-                    </li>
-                    <li><a href="javascript:document.getElementById('logoutForm').submit()">Sign Out</a></li>
-                }
-                else
-                {
+                </ul>
+                <ul id="nav-mobile" class="sidenav">
                     <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
-                    <li>@Html.ActionLink("Sign in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
-                }
-
-            </ul>
-            <ul id="nav-mobile" class="sidenav">
-                <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
-                <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
-            </ul>
+                    <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+                </ul>
 
             }
 

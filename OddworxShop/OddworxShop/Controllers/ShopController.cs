@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using OddworxShop.Data.DAL;
 using OddworxShop.Data.Models;
+using OddworxShop.ViewModels;
 
 namespace OddworxShop.Controllers
 {
@@ -16,25 +17,20 @@ namespace OddworxShop.Controllers
         private DataContext db = new DataContext();
 
         // Add shop
-        public ActionResult AddShop()
+        public ActionResult OpenShop()
         {
             if (Request.IsAuthenticated)
             {
-                Create();
+                return RedirectToAction("Create");
             }
             else
             {
-                ShowRegister();
+                return View("Register", "Account");
             }
-            return View();
         }
 
         #region PRIVATE
 
-        private void ShowRegister()
-        {
-            throw new NotImplementedException();
-        }
 
         #endregion
 
@@ -64,12 +60,11 @@ namespace OddworxShop.Controllers
         // GET: Shop/Create
         public ActionResult Create()
         {
-            if (!Request.IsAuthenticated)
-            {
-                ShowRegister();
-            }
-            
-            return View();
+            CreateShopViewModel model = new CreateShopViewModel();       
+            //model.AdminUser = User.Identity
+
+
+            return View("Create",model);
         }
 
         // POST: Shop/Create
