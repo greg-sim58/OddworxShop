@@ -27,3 +27,12 @@ textarea {
 .font-georgia {
     font-family:Georgia, 'Times New Roman', Times, serif;
 }
+
+/*--------------------------  FOOTER  ----------------------------*/
+.footer-copyright {
+    background-color: #b71c1c;
+    min-height:3rem;
+    position:absolute;
+    bottom: 0px;
+    width: 100%;
+}

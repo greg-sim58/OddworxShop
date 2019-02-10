@@ -16,17 +16,17 @@
             crossorigin="anonymous"></script>
 
 </head>
-<body id="home" class="scrollspy">
+<body id="home" class="scrollspy lime lighten-5">
     <!-- Nav Bar -->
     <nav class="grey darken-4" role="navigation">
-        <div class="nav-wrapper container">
+        <div class="nav-wrapper container-fluid">
             <a id="logo-container" href="@Url.Action("Index","Home")" class="brand-logo">Oddworx</a>
 
             @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
             {
                 <ul class="right hide-on-med-and-down">
                     @*<li>@Html.ActionLink("Home", "Index", "Home", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
-                    <li>@Html.ActionLink("Send email", "Index", "PublicUser", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>*@
+                        <li>@Html.ActionLink("Send email", "Index", "PublicUser", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>*@
                     <li>@Html.ActionLink("Open a shop on Oddworx", "OpenShop", "Shop", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
 
                     @if (User.Identity.IsAuthenticated)
@@ -60,38 +60,11 @@
         @RenderBody()
     </div>
 
-    <!-- Footer -->
-    <footer class="page-footer red darken-4 grey-text text-lighten-4">
-        <div class="container">
-            <div class="row">
-                <div class="col l6 s12">
-                    <h5>Company Bio</h5>
-                    <p class="grey-text text-darken-1">We are a team of college students working on this project like it's our full time job. Any amount would help support and continue development on this project and is greatly appreciated.</p>
-
-                </div>
-                <div class="col l3 s12">
-                    <h5>Settings</h5>
-                    <ul>
-                        <li><a href="#!">Link 1</a></li>
-                        <li><a href="#!">Link 2</a></li>
-                        <li><a href="#!">Link 3</a></li>
-                        <li><a class="white-text" href="#!">Link 4</a></li>
-                    </ul>
-                </div>
-                <div class="col l3 s12">
-                    <h5>Connect</h5>
-                    <ul>
-                        <li><a class="white-text" href="#!">Link 1</a></li>
-                        <li><a class="white-text" href="#!">Link 2</a></li>
-                        <li><a class="white-text" href="#!">Link 3</a></li>
-                        <li><a class="white-text" href="#!">Link 4</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
+    <br />
+    <footer>
         <div class="footer-copyright">
-            <div class="container">
-                Made by <a class="orange-text text-lighten-3" href="http://materializecss.com">Materialize</a>
+            <div class="container valign-wrapper">
+                <p>Made by <a class="white-text text-lighten-3 center" href="http://materializecss.com">Materialize</a></p>
             </div>
         </div>
     </footer>
