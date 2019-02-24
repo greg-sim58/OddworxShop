@@ -35,6 +35,17 @@ namespace OddworxShop.Controllers
         #endregion
 
 
+        public ActionResult UserShops()
+        {
+            using (DataContext ctx = new DataContext())
+            {
+                var userId = ctx.Users.Where(u => u.EMail == User.Identity.Name).FirstOrDefault().Id;
+                var shops = ctx.Shops.Where(s => s.AdminUser.Id == userId).ToList();
+
+                return View("Index", shops);
+            }
+            return null;
+        }
 
         // GET: Shop
         public ActionResult Index()
@@ -60,11 +71,11 @@ namespace OddworxShop.Controllers
         // GET: Shop/Create
         public ActionResult Create()
         {
-            CreateShopViewModel model = new CreateShopViewModel();       
+            CreateShopViewModel model = new CreateShopViewModel();
             //model.AdminUser = User.Identity
 
 
-            return View("Create",model);
+            return View("Create", model);
         }
 
         // POST: Shop/Create
@@ -81,13 +92,23 @@ namespace OddworxShop.Controllers
                 shop.LastModifiedAt = DateTime.Now;
                 shop.LastModifiedBy = 0;
                 shop.IsActive = true;
+                shop.AdminUser = db.Users.Where(u => u.EMail == User.Identity.Name).FirstOrDefault(); ;
 
                 db.Shops.Add(shop);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("UserShops");
             }
 
             return View(shop);
+        }
+
+        private User GetUser(string name)
+        {
+            using (DataContext ctx = new DataContext())
+            {
+                var user = ctx.Users.Where(u => u.EMail == User.Identity.Name).FirstOrDefault();
+                return user;
+            }
         }
 
         // GET: Shop/Edit/5

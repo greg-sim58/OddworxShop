@@ -18,5 +18,10 @@ namespace OddworxShop.Controllers
             Common.EmailHelper.EmailSender.SendMail(toAddresses, null, "Test Subject", "Test body");
             return View();
         }
+
+        public ActionResult UserProfile(int? id)
+        {
+            return View();
+        }
     }
 }

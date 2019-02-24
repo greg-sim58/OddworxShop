@@ -1,10 +1,14 @@
-﻿using System.Linq;
+﻿using System;
+using System.Data.Entity;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
+using OddworxShop.Data.DAL;
+using OddworxShop.Data.Models;
 using OddworxShop.Models;
 
 namespace OddworxShop.Controllers
@@ -77,6 +81,7 @@ namespace OddworxShop.Controllers
             {
                 case SignInStatus.Success:
                     //-return RedirectToLocal(returnUrl);
+                    VerifyUserDetails(model);
                     return RedirectToAction("Front", "Home");
                 case SignInStatus.LockedOut:
                     return View("Lockout");
@@ -159,7 +164,10 @@ namespace OddworxShop.Controllers
                     // Send an email with this link
                     string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                    await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+                    UserManager.SendEmail(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+
+                    //-- Add new user to User table -- move to after email confirm??
+                    AddUserToUserTable(user);
 
                     return RedirectToAction("Index", "Home");
                 }
@@ -400,6 +408,59 @@ namespace OddworxShop.Controllers
         {
             return View();
         }
+
+        #region PRIVATE
+
+        private void VerifyUserDetails(LoginViewModel model)
+        {
+            if (model != null)
+            {
+                using (DataContext ctx = new DataContext())
+                {
+                    var user = ctx.Users.Where(u => u.EMail == model.Email).FirstOrDefault();
+                    if (user == null)
+                    {
+                        User newUser = new User
+                        {
+                            EMail = model.Email,
+                            CreatedAt = DateTime.Now,
+                            LastModifiedAt = DateTime.Now,
+                            LastModifiedBy = 0,
+                            CreatedBy = 0,
+                            IsActive = true
+                        };
+
+                        ctx.Users.Add(newUser);
+                        ctx.SaveChanges();
+                    }
+                }
+            }
+        }
+
+        private void AddUserToUserTable(ApplicationUser applicationUser)
+        {
+            using (DataContext ctx = new DataContext())
+            {
+                User user = ctx.Users.Where(u => u.EMail == applicationUser.Email).FirstOrDefault();
+                if (user == null)
+                {
+                    user = new User
+                    {
+                        EMail = applicationUser.Email,
+                        IsActive = true,
+                        CreatedAt = DateTime.Now,
+                        CreatedBy = 0,
+                        LastModifiedAt = DateTime.Now,
+                        LastModifiedBy = 0
+                    };
+
+                    ctx.Users.Add(user);
+                    ctx.SaveChanges();
+                }
+            }
+        }
+
+        #endregion
 
         protected override void Dispose(bool disposing)
         {
