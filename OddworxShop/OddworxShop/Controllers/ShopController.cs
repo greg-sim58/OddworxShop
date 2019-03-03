@@ -47,6 +47,11 @@ namespace OddworxShop.Controllers
             return null;
         }
 
+        public ActionResult ViewShopItems(int id)
+        {
+            return RedirectToAction("ViewItemsByShop", "Item", new { shopId = id });
+        }
+
         // GET: Shop
         public ActionResult Index()
         {

@@ -92,6 +92,10 @@
     <Compile Include="Migrations\201809061637419_initial1.Designer.cs">
       <DependentUpon>201809061637419_initial1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201903030913060_added-shop-to-items.cs" />
+    <Compile Include="Migrations\201903030913060_added-shop-to-items.Designer.cs">
+      <DependentUpon>201903030913060_added-shop-to-items.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Base.cs" />
     <Compile Include="Models\Image.cs" />
@@ -108,6 +112,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201809061637419_initial1.resx">
       <DependentUpon>201809061637419_initial1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903030913060_added-shop-to-items.resx">
+      <DependentUpon>201903030913060_added-shop-to-items.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
