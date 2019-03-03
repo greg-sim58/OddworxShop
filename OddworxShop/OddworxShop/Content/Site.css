@@ -1,13 +1,41 @@
-﻿body {
-    /*padding-top: 50px;
-    padding-bottom: 20px;*/
+﻿html, body {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    
+}
+
+nav {
+    box-shadow: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+}
+
+.btn {
+    box-shadow: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+}
+
+.content {
+    flex: 1 0 auto;
+}
+
+.footer {
+    flex-shrink: 0;
+    min-height: 4rem;
+    background-color: #b71c1c;
 }
 
 /* Set padding to keep content from hitting the edges */
 .body-content {
+    padding-top: 50px;
+    padding-bottom: 20px;
     padding-left: 15px;
     padding-right: 15px;
-    padding-bottom:20px;
 }
 
 /* Override the default bootstrap behavior where horizontal description lists 
@@ -21,7 +49,7 @@
 input,
 select,
 textarea {
-    max-width: 280px;
+    
 }
 
 .font-georgia {
@@ -29,10 +57,10 @@ textarea {
 }
 
 /*--------------------------  FOOTER  ----------------------------*/
-.footer-copyright {
+/*.footer-copyright {
     background-color: #b71c1c;
-    min-height:3rem;
+    min-height:4rem;
     position:absolute;
     bottom: 0px;
     width: 100%;
-}
+}*/
