@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using OddworxShop.Data.DAL;
 using OddworxShop.Data.Models;
+using OddworxShop.ViewModels;
 
 namespace OddworxShop.Controllers
 {
@@ -43,9 +44,11 @@ namespace OddworxShop.Controllers
         }
 
         // GET: Item/Create
-        public ActionResult Create()
+        public ActionResult Create(int shopId)
         {
-            return View();
+            CreateItemViewModel model = new CreateItemViewModel();
+            //--model.Shop = 
+            return View(model);
         }
 
         // POST: Item/Create

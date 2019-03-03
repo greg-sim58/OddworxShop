@@ -42,9 +42,8 @@ namespace OddworxShop.Controllers
                 var userId = ctx.Users.Where(u => u.EMail == User.Identity.Name).FirstOrDefault().Id;
                 var shops = ctx.Shops.Where(s => s.AdminUser.Id == userId).ToList();
 
-                return View("Index", shops);
+                return View("UserShops", shops);
             }
-            return null;
         }
 
         public ActionResult ViewShopItems(int id)
