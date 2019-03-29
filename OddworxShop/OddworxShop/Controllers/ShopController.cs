@@ -48,6 +48,8 @@ namespace OddworxShop.Controllers
 
         public ActionResult ViewShopItems(int id)
         {
+            ShopItemViewModel model = new ShopItemViewModel();
+
             return RedirectToAction("ViewItemsByShop", "Item", new { shopId = id });
         }
 

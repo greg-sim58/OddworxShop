@@ -24,7 +24,19 @@ namespace OddworxShop.Controllers
 
         public ActionResult ViewItemsByShop(int shopId)
         {
-            var model = db.Items.Where(i => i.Shop.Id == shopId).ToList();
+
+            ShopItemViewModel model = new ShopItemViewModel();
+            using (DataContext dbx =  new DataContext())
+            {
+                model = new ShopItemViewModel
+                {
+                    Items = db.Items.Where(i => i.Shop.Id == shopId).ToList(),
+                    ShopId = shopId,
+                    ShopName = db.Shops.Where(s => s.Id == shopId).FirstOrDefault().Name
+                };
+
+            }
+
             return View(model);
         }
 
@@ -44,9 +56,9 @@ namespace OddworxShop.Controllers
         }
 
         // GET: Item/Create
-        public ActionResult Create(int shopId)
+        public ActionResult Create(int? shopId)
         {
-            CreateItemViewModel model = new CreateItemViewModel();
+            ShopItemViewModel model = new ShopItemViewModel();
             //--model.Shop = 
             return View(model);
         }
