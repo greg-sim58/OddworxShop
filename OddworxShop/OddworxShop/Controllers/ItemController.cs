@@ -56,34 +56,47 @@ namespace OddworxShop.Controllers
         }
 
         // GET: Item/Create
-        public ActionResult Create(int? shopId)
+        public ActionResult Create(int shopId)
         {
-            ShopItemViewModel model = new ShopItemViewModel();
-            //--model.Shop = 
+            CreateItemViewModel model = new CreateItemViewModel();
+            using (DataContext ctx = new DataContext())
+            {
+                model.Shop = ctx.Shops.Find(shopId);
+            }
             return View(model);
         }
 
         // POST: Item/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,Description,Price")] Item item)
+        public ActionResult Create([Bind(Include = "Id,Name,Description,Price, Shop")] CreateItemViewModel model)
         {
+            
+
             if (ModelState.IsValid)
             {
-                item.CreatedAt = DateTime.Now;
-                item.CreatedBy = 0;
-                item.LastModifiedAt = DateTime.Now;
-                item.LastModifiedBy = 0;
-                item.IsActive = true;
-                
-                db.Items.Add(item);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                Item item = new Item();
+
+                using (DataContext ctx = new DataContext())
+                {
+                    item.Name = model.Name;
+                    item.Price = model.Price;
+                    item.Description = model.Description;
+                    item.Shop = ctx.Shops.Find(model.Shop.Id);
+
+                    item.CreatedAt = DateTime.Now;
+                    item.CreatedBy = 0;
+                    item.LastModifiedAt = DateTime.Now;
+                    item.LastModifiedBy = 0;
+                    item.IsActive = true;
+
+                    ctx.Items.Add(item);
+                    ctx.SaveChanges();
+                    return RedirectToAction("ViewItemsByShop", new { shopId = model.Shop.Id });
+                }
             }
 
-            return View(item);
+            return View(model);
         }
 
         // GET: Item/Edit/5
@@ -112,7 +125,7 @@ namespace OddworxShop.Controllers
             {
                 db.Entry(item).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("ViewItemsByShop", new { shopId = item.Shop.Id } );
             }
             return View(item);
         }

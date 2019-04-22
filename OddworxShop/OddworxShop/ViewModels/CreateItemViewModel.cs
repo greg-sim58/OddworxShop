@@ -14,10 +14,10 @@ namespace OddworxShop.ViewModels
         public decimal Price { get; set; }
 
         public ItemCategory Category { get; set; }
-        public Image Image { get; set; }
+        public int MainImage { get; set; }
+        public IEnumerable<Image> Images { get; set; }
 
         public Shop Shop { get; set; }
         public virtual List<Rating> Ratings { get; set; }
-
     }
 }

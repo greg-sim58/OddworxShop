@@ -7,12 +7,13 @@
 <h4>All items for @Model.ShopName</h4>
 
 <p>
-    <input type="button" name="name" value="CREATE NEW ITEM" class="btn" id="create-item-for-shop" />
+    @*<input type="button" name="name" value="CREATE NEW ITEM" class="btn" id="create-item-for-shop" />*@
+    <a href="@Url.Action("Create","Item")?shopId=@Model.ShopId" class="btn">CREATE NEW ITEM</a>
 </p>
 
 @Html.HiddenFor(model => model.ShopId)
 
-@if (Model.Items != null)
+@if (Model.Items != null && Model.Items.Count > 0)
 {
     <table class="table table-dark">
         <thead>
@@ -29,21 +30,6 @@
                 <th>
                     @Html.DisplayNameFor(model => model.Items[0].Ratings)
                 </th>
-                @*<th>
-                @Html.DisplayNameFor(model => model.CreatedAt)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CreatedBy)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.LastModifiedAt)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.LastModifiedBy)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IsActive)
-            </th>*@
                 <th></th>
             </tr>
         </thead>
@@ -88,6 +74,14 @@
 
     </table>
 }
+else
+{
+     <div class="row">
+         <div class="col s12">
+             <h5>No items found in this shop</h5>
+         </div>
+     </div>
+}
 
 
 
@@ -99,5 +93,12 @@
     $('#create-item-for-shop').click(function (e) {
         e.preventDefault();
         alert('create-item-for-shop');
+        $.ajax({
+            type: 'GET',
+            url: '@Url.Action("Create","Item")',
+            data: { shopId: 1 },
+            success: function(){},
+            error: {}
+        })
     })
 </script>
