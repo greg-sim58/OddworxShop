@@ -3,14 +3,14 @@
     ViewBag.Title = "Register";
 }
 
-<h2>@ViewBag.Title.</h2>
+<h2>Create a new account</h2>
 <div class="container">
 
 
     @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
     {
         @Html.AntiForgeryToken()
-        <h4>Create a new account.</h4>
+        @*<h4>Create a new account.</h4>*@
         <hr />
         @Html.ValidationSummary("", new { @class = "text-danger" })
         <div class="form-group">

@@ -207,6 +207,7 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="ViewModels\CreateItemViewModel.cs" />
     <Compile Include="ViewModels\CreateShopViewModel.cs" />
+    <Compile Include="ViewModels\ItemEditViewModel.cs" />
     <Compile Include="ViewModels\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />

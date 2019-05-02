@@ -52,6 +52,13 @@ namespace OddworxShop.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
+                itemCategory.CreatedAt = DateTime.Now;
+                itemCategory.CreatedBy = 0;
+                itemCategory.LastModifiedAt = DateTime.Now;
+                itemCategory.LastModifiedBy = 0;
+                itemCategory.IsActive = true;
+                
+
                 db.ItemCategories.Add(itemCategory);
                 db.SaveChanges();
                 return RedirectToAction("Index");

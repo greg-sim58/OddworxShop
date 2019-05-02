@@ -106,12 +106,26 @@ namespace OddworxShop.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Item item = db.Items.Find(id);
-            if (item == null)
+            ItemEditViewModel model = new ItemEditViewModel();
+
+            using (DataContext ctx = new DataContext())
             {
-                return HttpNotFound();
+                Item item = ctx.Items.Find(id);
+                if (item == null)
+                {
+                    return HttpNotFound();
+                }
+
+                model.Id = item.Id;
+                model.Category = ctx.ItemCategories.Find(item.Category.Id);
+
+                return View(item);
             }
-            return View(item);
+                
+        
+
+            
+            
         }
 
         // POST: Item/Edit/5

@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using OddworxShop.Admin.ViewModels;
 using OddworxShop.Data.DAL;
 using OddworxShop.Data.Models;
 
@@ -19,7 +20,17 @@ namespace OddworxShop.Admin.Controllers
         // GET: Item
         public ActionResult Index()
         {
-            return View(db.Items.ToList());
+            ItemViewModel model = new ItemViewModel();
+
+            using (DataContext ctx = new DataContext())
+            {
+                var items = ctx.Items.ToList();
+
+                var allItems = ctx.Items.Include(s => s.Shop).ToList();
+
+                return View(ctx.Items.ToList());
+            }
+                
         }
 
         // GET: Item/Details/5

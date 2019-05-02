@@ -12,47 +12,51 @@
     <link href="~/Content/style.css" rel="stylesheet" />
 
 </head>
-<body>
-    <div class="container-fluid">
+<body id="home" class="scrollspy content style="background-color: beige;">
+    
         <nav class="light-blue lighten-1" role="navigation">
-            <div class="nav-wrapper container-fluid">
-                <a id="logo-container" href="/Home/Index" class="brand-logo">Logo</a>
-                <ul class="right hide-on-med-and-down">
-                    @if (@User.Identity.IsAuthenticated)
-                    {
-                        <li>@Html.ActionLink("Images", "Index", "Images", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
-                        <li>@Html.ActionLink("Users", "Index", "Users", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
-                        <li>@Html.ActionLink("Shops", "Index", "Shops", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
-                        <li>@Html.ActionLink("Shop Categories", "Index", "ShopCategories", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
-                        <li>
-                            @*@Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })*@
-                        </li>
-                        <li>@Html.ActionLink("Log out", "LogOut", "Account")</li>
-                    }
-                    else
-                    {
+            <div class="nav-wrapper">
+
+                <div class="container-fluid">
+
+
+                    <a id="logo-container" href="/Home/Index" class="brand-logo">Logo</a>
+                    <ul class="right hide-on-med-and-down">
+                        @if (@User.Identity.IsAuthenticated)
+                        {
+                            <li>@Html.ActionLink("Images", "Index", "Images", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+                            <li>@Html.ActionLink("Users", "Index", "Users", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+                            <li>@Html.ActionLink("Shops", "Index", "Shops", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+                            <li> @Html.ActionLink("Shop Categories", "Index", "ShopCategories", routeValues: null, htmlAttributes: new { id = "registerLink" }) </li>
+                            <li>@Html.ActionLink("Items", "Index", "Items", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+                            <li>@Html.ActionLink("Item Categories", "Index", "ItemCategory", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+                            <li>
+                                @*@Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })*@
+                            </li>
+                            <li>@Html.ActionLink("Log out", "LogOut", "Account")</li>
+                        }
+                        else
+                        {
+                            <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+                            <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+                        }
+                    </ul>
+                    <ul id="nav-mobile" class="sidenav">
+                        @if (@User.Identity.IsAuthenticated)
+                        {
+                            <li>@Html.ActionLink("User Account Types", "Index", "UserAccount", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+                            <li>@Html.ActionLink("User Accounts", "Index", "UserAccount", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+                            <li>@Html.ActionLink("Shops", "Index", "Shop", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+                        }
                         <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
                         <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
-                    }
-                </ul>
-                <ul id="nav-mobile" class="sidenav">
-                    @if (@User.Identity.IsAuthenticated)
-                    {
-                        <li>@Html.ActionLink("User Account Types", "Index", "UserAccount", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
-                        <li>@Html.ActionLink("User Accounts", "Index", "UserAccount", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
-                        <li>@Html.ActionLink("Shops", "Index", "Shop", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
-                    }
-                    <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
-                    <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
-                </ul>
-                <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-            </div>
-        </nav>
+                    </ul>
+                    <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+                </div>
+</nav>
     </div>
 
-    <div>
-        <br /> 
-    </div>
+
     <div class="container-fluid body-content">
         @RenderBody()
         <hr />
