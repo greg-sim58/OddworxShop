@@ -96,7 +96,21 @@
     <Compile Include="Migrations\201903030913060_added-shop-to-items.Designer.cs">
       <DependentUpon>201903030913060_added-shop-to-items.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201905021706410_added-admin-user-admin-user-roles.cs" />
+    <Compile Include="Migrations\201905021706410_added-admin-user-admin-user-roles.Designer.cs">
+      <DependentUpon>201905021706410_added-admin-user-admin-user-roles.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905021713057_added-admin-user.cs" />
+    <Compile Include="Migrations\201905021713057_added-admin-user.Designer.cs">
+      <DependentUpon>201905021713057_added-admin-user.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905021716335_added-admin-users.cs" />
+    <Compile Include="Migrations\201905021716335_added-admin-users.Designer.cs">
+      <DependentUpon>201905021716335_added-admin-users.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\AdminUser.cs" />
+    <Compile Include="Models\AdminUserRole.cs" />
     <Compile Include="Models\Base.cs" />
     <Compile Include="Models\Image.cs" />
     <Compile Include="Models\Item.cs" />
@@ -115,6 +129,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201903030913060_added-shop-to-items.resx">
       <DependentUpon>201903030913060_added-shop-to-items.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905021706410_added-admin-user-admin-user-roles.resx">
+      <DependentUpon>201905021706410_added-admin-user-admin-user-roles.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905021713057_added-admin-user.resx">
+      <DependentUpon>201905021713057_added-admin-user.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905021716335_added-admin-users.resx">
+      <DependentUpon>201905021716335_added-admin-users.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
