@@ -117,7 +117,15 @@ namespace OddworxShop.Controllers
                 }
 
                 model.Id = item.Id;
-                model.Category = ctx.ItemCategories.Find(item.Category.Id);
+                if (item.Category != null)
+                {
+                    model.Category = ctx.ItemCategories.Find(item.Category.Id);
+                }
+                else
+                {
+                    model.Category = ctx.ItemCategories.Where(ic => ic.Name.ToLower() == "unknown").FirstOrDefault();
+                }
+                
 
                 return View(item);
             }
