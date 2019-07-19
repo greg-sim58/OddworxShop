@@ -108,6 +108,14 @@
     <Compile Include="Migrations\201905021716335_added-admin-users.Designer.cs">
       <DependentUpon>201905021716335_added-admin-users.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201907181334437_ImagesListItems.cs" />
+    <Compile Include="Migrations\201907181334437_ImagesListItems.Designer.cs">
+      <DependentUpon>201907181334437_ImagesListItems.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201907181522459_VarbinaryForImage1.cs" />
+    <Compile Include="Migrations\201907181522459_VarbinaryForImage1.Designer.cs">
+      <DependentUpon>201907181522459_VarbinaryForImage1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AdminUser.cs" />
     <Compile Include="Models\AdminUserRole.cs" />
@@ -138,6 +146,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201905021716335_added-admin-users.resx">
       <DependentUpon>201905021716335_added-admin-users.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907181334437_ImagesListItems.resx">
+      <DependentUpon>201907181334437_ImagesListItems.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907181522459_VarbinaryForImage1.resx">
+      <DependentUpon>201907181522459_VarbinaryForImage1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

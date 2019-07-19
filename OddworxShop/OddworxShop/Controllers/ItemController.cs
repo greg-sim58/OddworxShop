@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -26,7 +27,7 @@ namespace OddworxShop.Controllers
         {
 
             ShopItemViewModel model = new ShopItemViewModel();
-            using (DataContext dbx =  new DataContext())
+            using (DataContext dbx = new DataContext())
             {
                 model = new ShopItemViewModel
                 {
@@ -71,7 +72,7 @@ namespace OddworxShop.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,Name,Description,Price, Shop")] CreateItemViewModel model)
         {
-            
+
 
             if (ModelState.IsValid)
             {
@@ -117,6 +118,13 @@ namespace OddworxShop.Controllers
                 }
 
                 model.Id = item.Id;
+                model.Description = item.Description;
+                model.Image = item.Image;
+                model.Images = item.Images;
+                model.IsActive = item.IsActive;
+                model.Name = item.Name;
+                model.Price = item.Price;
+
                 if (item.Category != null)
                 {
                     model.Category = ctx.ItemCategories.Find(item.Category.Id);
@@ -125,15 +133,14 @@ namespace OddworxShop.Controllers
                 {
                     model.Category = ctx.ItemCategories.Where(ic => ic.Name.ToLower() == "unknown").FirstOrDefault();
                 }
-                
 
-                return View(item);
+                return View(model);
             }
-                
-        
 
-            
-            
+
+
+
+
         }
 
         // POST: Item/Edit/5
@@ -147,7 +154,7 @@ namespace OddworxShop.Controllers
             {
                 db.Entry(item).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("ViewItemsByShop", new { shopId = item.Shop.Id } );
+                return RedirectToAction("ViewItemsByShop", new { shopId = item.Shop.Id });
             }
             return View(item);
         }
@@ -176,6 +183,56 @@ namespace OddworxShop.Controllers
             db.Items.Remove(item);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        public ActionResult SaveImage()
+        {
+            if (Request.Files.Count > 0)
+            {
+                try
+                {
+                    HttpFileCollectionBase files = Request.Files;
+                    HttpPostedFileBase file = files[0];
+                    string contentType = file.ContentType;
+                    string fname;
+                    fname = file.FileName;
+                    fname = Path.Combine(Server.MapPath("~/Uploads/"), fname);
+                    file.SaveAs(fname);
+
+                    using (Stream fs = file.InputStream)
+                    {
+                        using (BinaryReader br = new BinaryReader(fs))
+                        {
+                            byte[] bytes = br.ReadBytes((Int32)fs.Length);
+
+                            var image = new Image();
+                            image.ImageData = bytes;
+                            image.Description = fname;
+                            image.Name = fname;
+
+                            db.Images.Add(image);
+                            db.SaveChanges();
+
+                            var item = db.Items.Find(1);
+                            item.Images.Add(image);
+
+                            db.Entry(item).State = EntityState.Modified;
+                            db.SaveChanges();
+                        }
+                    }
+
+                    
+                }
+                catch (Exception ex)
+                {
+
+                    throw;
+                }
+
+
+                return Json("Done", JsonRequestBehavior.AllowGet);
+            }
+            return Json("No files", JsonRequestBehavior.AllowGet);
         }
 
         protected override void Dispose(bool disposing)

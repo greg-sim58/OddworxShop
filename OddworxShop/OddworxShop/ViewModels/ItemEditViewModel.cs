@@ -12,8 +12,10 @@ namespace OddworxShop.ViewModels
 
         public ItemCategory Category { get; set; }
         public Image Image { get; set; }
+        public bool IsActive { get; set; }
 
         public Shop Shop { get; set; }
         public virtual List<Rating> Ratings { get; set; }
+        public virtual List<Image> Images { get; set; }
     }
 }

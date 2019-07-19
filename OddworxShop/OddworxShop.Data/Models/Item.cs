@@ -17,5 +17,6 @@ namespace OddworxShop.Data.Models
 
         public Shop Shop { get; set; }
         public virtual List<Rating> Ratings { get; set; }
+        public virtual List<Image> Images { get; set; }
     }
 }

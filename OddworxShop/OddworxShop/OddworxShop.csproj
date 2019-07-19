@@ -273,6 +273,7 @@
     <Content Include="Images\art-creative-creativity-1660.jpg" />
     <Content Include="Images\bricks-brickwall-indoors-112811.jpg" />
     <Content Include="Images\design-lamps-lights-2918.jpg" />
+    <Content Include="Images\missing-image-232x150.png" />
     <Content Include="Scripts\init.js" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
