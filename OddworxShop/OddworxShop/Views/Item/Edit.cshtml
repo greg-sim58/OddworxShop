@@ -6,30 +6,27 @@
 
 <div class="container">
 
-    <h2>Edit item details</h2>
-
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
 
         <div class="form-horizontal">
-            <div class="row">
-                <div class="col s12 m6">
-                    <h4>Item</h4>
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.Id, new { id = "hidden-item-id" })
+            @*@Html.HiddenFor(model => model.CreatedAt, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.HiddenFor(model => model.CreatedBy, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.HiddenFor(model => model.LastModifiedAt, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.HiddenFor(model => model.LastModifiedBy, new { htmlAttributes = new { @class = "form-control" } })*@
+            <div class="col s12 m6 center">
+                <div class="row">
+                    <h5>Edit item details</h5>
                 </div>
             </div>
-
-            <hr />
-            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            @Html.HiddenFor(model => model.Id, new { id = "hidden-item-id" } )
-            @*@Html.HiddenFor(model => model.CreatedAt, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.HiddenFor(model => model.CreatedBy, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.HiddenFor(model => model.LastModifiedAt, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.HiddenFor(model => model.LastModifiedBy, new { htmlAttributes = new { @class = "form-control" } })*@
+            <br />
 
             <div class="row">
                 <div class="form-group col s12 m6">
-                    @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label" })
                     @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
                 </div>
@@ -37,7 +34,7 @@
 
             <div class="row">
                 <div class="form-group col s12 m6">
-                    @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label" })
                     @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
                 </div>
@@ -53,18 +50,18 @@
 
             <div class="row">
                 <div class="form-group col s12 m6">
-                    @Html.LabelFor(model => model.IsActive, htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.LabelFor(model => model.IsActive, htmlAttributes: new { @class = "control-label" })
                     <div>
                         @Html.CheckBoxFor(model => model.IsActive)
                         @Html.ValidationMessageFor(model => model.IsActive, "", new { @class = "text-danger" })
                     </div>
                 </div>
             </div>
+            <hr />
 
-            <div class="row green lighten-5" style="padding:12px;">
+            <div class="row teal lighten-3" style="padding:12px;">
                 @if (Model.Images != null)
                 {
-
                     for (var i = 0; i < 6; i++)
                     {
                         <div class="col">
@@ -73,13 +70,13 @@
                                 <div>
                                     @if (i < Model.Images.Count())
                                     {
-                                        <span><img src="data:image/jpeg;base64,@(Convert.ToBase64String(@Model.Images[i].ImageData))" class="image-thumbnail-small" /></span>
-                                        <input type="file" class="item-image-upload">
+                                        <span id="image-@i"><img src="data:image/jpeg;base64,@(Convert.ToBase64String(@Model.Images[i].ImageData))" class="image-thumbnail-small" /></span>
+                                        <input type="file" class="item-image-upload" id="@i">
                                     }
                                     else
                                     {
-                                        <span><img src="~/Images/missing-image-232x150.png" class="image-thumbnail-small" /></span>
-                                        <input type="file" class="item-image-upload">
+                                        <span id="image-@i"><img src="~/Images/missing-image-232x150.png" class="image-thumbnail-small" /></span>
+                                        <input type="file" class="item-image-upload" id="@i">
                                     }
                                 </div>
                                 <div class="file-path-wrapper">
@@ -89,8 +86,6 @@
                         </div>
                     }
                 }
-
-
             </div>
 
             <div class="row">
@@ -104,7 +99,7 @@
     }
 
     <div>
-        @Html.ActionLink("Back to List", "ViewItemsByShop", "Item", new { shopId = @Model.Shop.Id }, null )
+        @*@Html.ActionLink("Back to List", "ViewItemsByShop", "Item", new { shopId = @Model.Shop.Id }, null )*@
     </div>
 </div>
 
@@ -112,24 +107,15 @@
     $(document).ready(function () {
 
         $('.item-image-upload').change(function (e) {
-            //var file = this.files[0];
-
-
             var fileUpload = this.files[0];
             var files = fileUpload.files;
-
-
             // Create FormData object
             var fileData = new FormData();
             fileData.append(fileUpload.name, fileUpload);
-            fileData.append("itemId",$('#hidden-item-id').val())
-
-            // Looping over all files and add it to FormData object
-            //for (var i = 0; i < files.length; i++) {
-            //    fileData.append(files[i].name, files[i]);
-            //}
-
-            alert(fileUpload.name);
+            var theFile = fileUpload;
+            fileData.append("itemId", $('#hidden-item-id').val())
+            var imageId = '#image-' + this.id;
+            alert('imageId: ' + imageId);
 
             $.ajax({
                 type: 'post',
@@ -139,11 +125,49 @@
                 data: fileData,
                 success: function (response) {
                     alert(response);
+                    //ShowImage(response);
+                    $(imageId).html('<img src="/Item/GetImage?id=' + response + '" class="image-thumbnail-small"/>');
+                        //'<img src = "/Images/missing-image-232x150.png" class= "image-thumbnail-small" >'
                 },
                 error: function (response) {
                     alert('ERROR: ' + response)
                 }
             });
         });
+
+
     });
+
+    function AddPicture(e,id) {
+        e.preventDefault();
+        alert('ShowImage ' + id);
+
+                    var fileUpload = this.files[0];
+            var files = fileUpload.files;
+            // Create FormData object
+            var fileData = new FormData();
+            fileData.append(fileUpload.name, fileUpload);
+            var theFile = fileUpload;
+            fileData.append("itemId", $('#hidden-item-id').val())
+            var imageId = '#image-' + this.id;
+            alert('imageId: ' + imageId);
+
+        $.ajax({
+            type: 'post',
+            url: '@Url.Action("SaveImage","Item")',
+            contentType: false, // Not to set any content header
+            processData: false,
+            data: fileData,
+            success: function (response) {
+                alert(response);
+                //ShowImage(response);
+                $(imageId).html('<img src="/Item/GetImage?id=' + response + '" class="image-thumbnail-small"/>');
+                //'<img src = "/Images/missing-image-232x150.png" class= "image-thumbnail-small" >'
+            },
+            error: function (response) {
+                alert('ERROR: ' + response)
+            }
+        })
+
+    }
 </script>

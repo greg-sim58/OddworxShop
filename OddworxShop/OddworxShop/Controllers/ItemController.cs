@@ -91,7 +91,6 @@ namespace OddworxShop.Controllers
                     item.LastModifiedAt = DateTime.Now;
                     item.LastModifiedBy = 0;
                     item.IsActive = true;
-                    item.Shop = model.Shop;
 
                     ctx.Items.Add(item);
                     ctx.SaveChanges();
@@ -146,15 +145,24 @@ namespace OddworxShop.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,Description,Price,CreatedAt,CreatedBy,LastModifiedAt,LastModifiedBy,IsActive")] Item item)
+        public ActionResult Edit([Bind(Include = "Id,Name,Description,Price,CreatedAt,CreatedBy,LastModifiedAt,LastModifiedBy,IsActive")] ItemEditViewModel model)
         {
             if (ModelState.IsValid)
             {
+                var item = db.Items.Find(model.Id);
+
+                if (item != null)
+                {
+                    item.Description = model.Description;
+                    item.IsActive = model.IsActive;
+                    item.Name = model.Name;
+                    item.Price = model.Price;
+                }
                 db.Entry(item).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("ViewItemsByShop", new { shopId = item.Shop.Id });
             }
-            return View(item);
+            return View(model);
         }
 
         // GET: Item/Delete/5
@@ -183,8 +191,10 @@ namespace OddworxShop.Controllers
             return RedirectToAction("Index");
         }
 
+        [HttpPost]
         public ActionResult SaveImage(int? itemId)
         {
+            var image = new Image();
             if (Request.Files.Count > 0)
             {
                 try
@@ -201,7 +211,7 @@ namespace OddworxShop.Controllers
                         {
                             byte[] bytes = br.ReadBytes((Int32)fs.Length);
 
-                            var image = new Image();
+                            image = new Image();
                             image.ImageData = bytes;
                             image.Description = fname;
                             image.Name = fname;
@@ -228,9 +238,18 @@ namespace OddworxShop.Controllers
                 {
                     return Json("Unable to upload file", JsonRequestBehavior.AllowGet);
                 }
-                return Json("Done", JsonRequestBehavior.AllowGet);
+                return Json(image.Id, JsonRequestBehavior.AllowGet);
             }
             return Json("No picture selected", JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult  GetImage(int? id)
+        {
+            var image = db.Images.Find(id);
+            byte[] data = image.ImageData;
+            return File(image.ImageData, "image/jpg");
+
+            //return Json(new { base64imgage = Convert.ToBase64String(data) }, JsonRequestBehavior.AllowGet);
         }
 
         protected override void Dispose(bool disposing)
