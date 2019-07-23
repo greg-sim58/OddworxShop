@@ -33,7 +33,8 @@ namespace OddworxShop.Controllers
                 {
                     Items = db.Items.Where(i => i.Shop.Id == shopId).ToList(),
                     ShopId = shopId,
-                    ShopName = db.Shops.Where(s => s.Id == shopId).FirstOrDefault().Name
+                    ShopName = db.Shops.Where(s => s.Id == shopId).FirstOrDefault().Name,
+                    Shop = db.Shops.Find(shopId)
                 };
 
             }
@@ -90,6 +91,7 @@ namespace OddworxShop.Controllers
                     item.LastModifiedAt = DateTime.Now;
                     item.LastModifiedBy = 0;
                     item.IsActive = true;
+                    item.Shop = model.Shop;
 
                     ctx.Items.Add(item);
                     ctx.SaveChanges();
@@ -124,6 +126,7 @@ namespace OddworxShop.Controllers
                 model.IsActive = item.IsActive;
                 model.Name = item.Name;
                 model.Price = item.Price;
+                //model.Shop = item.Shop_Id;
 
                 if (item.Category != null)
                 {
@@ -136,11 +139,6 @@ namespace OddworxShop.Controllers
 
                 return View(model);
             }
-
-
-
-
-
         }
 
         // POST: Item/Edit/5
@@ -185,7 +183,7 @@ namespace OddworxShop.Controllers
             return RedirectToAction("Index");
         }
 
-        public ActionResult SaveImage()
+        public ActionResult SaveImage(int? itemId)
         {
             if (Request.Files.Count > 0)
             {
@@ -196,8 +194,6 @@ namespace OddworxShop.Controllers
                     string contentType = file.ContentType;
                     string fname;
                     fname = file.FileName;
-                    fname = Path.Combine(Server.MapPath("~/Uploads/"), fname);
-                    file.SaveAs(fname);
 
                     using (Stream fs = file.InputStream)
                     {
@@ -211,28 +207,30 @@ namespace OddworxShop.Controllers
                             image.Name = fname;
 
                             db.Images.Add(image);
-                            db.SaveChanges();
-
-                            var item = db.Items.Find(1);
-                            item.Images.Add(image);
-
-                            db.Entry(item).State = EntityState.Modified;
-                            db.SaveChanges();
+                            if (db.SaveChanges() > 0)
+                            {
+                                var item = db.Items.Find(itemId);
+                                if (item != null)
+                                {
+                                    item.Images.Add(image);
+                                }
+                                db.Entry(item).State = EntityState.Modified;
+                                db.SaveChanges();
+                            }
+                            else
+                            {
+                                return Json("Unable to upload file", JsonRequestBehavior.AllowGet);
+                            }
                         }
                     }
-
-                    
                 }
                 catch (Exception ex)
                 {
-
-                    throw;
+                    return Json("Unable to upload file", JsonRequestBehavior.AllowGet);
                 }
-
-
                 return Json("Done", JsonRequestBehavior.AllowGet);
             }
-            return Json("No files", JsonRequestBehavior.AllowGet);
+            return Json("No picture selected", JsonRequestBehavior.AllowGet);
         }
 
         protected override void Dispose(bool disposing)

@@ -38,6 +38,20 @@ nav {
     padding-right: 15px;
 }
 
+.parent {
+    padding-top:50%;
+    position: relative;
+    background-color:aquamarine;
+}
+
+.child {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /*background-color:red;*/
+}
+
 /* Override the default bootstrap behavior where horizontal description lists 
    will truncate terms that are too long to fit in the left column 
 */

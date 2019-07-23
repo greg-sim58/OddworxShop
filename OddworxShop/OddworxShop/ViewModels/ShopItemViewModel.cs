@@ -10,6 +10,7 @@ namespace OddworxShop.ViewModels
     {
         public int ShopId { get; set; }
         public string ShopName { get; set; }
+        public Shop Shop { get; set; }
 
         public List<Item> Items { get; set; }
     }
