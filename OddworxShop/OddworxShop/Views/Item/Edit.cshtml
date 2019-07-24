@@ -14,9 +14,9 @@
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             @Html.HiddenFor(model => model.Id, new { id = "hidden-item-id" })
             @*@Html.HiddenFor(model => model.CreatedAt, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.HiddenFor(model => model.CreatedBy, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.HiddenFor(model => model.LastModifiedAt, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.HiddenFor(model => model.LastModifiedBy, new { htmlAttributes = new { @class = "form-control" } })*@
+                @Html.HiddenFor(model => model.CreatedBy, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.HiddenFor(model => model.LastModifiedAt, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.HiddenFor(model => model.LastModifiedBy, new { htmlAttributes = new { @class = "form-control" } })*@
             <div class="col s12 m6 center">
                 <div class="row">
                     <h5>Edit item details</h5>
@@ -99,7 +99,7 @@
     }
 
     <div>
-        @*@Html.ActionLink("Back to List", "ViewItemsByShop", "Item", new { shopId = @Model.Shop.Id }, null )*@
+        @Html.ActionLink("Back to List", "ViewItemsByShop", "Item", new { shopId = @Model.Shop.Id }, null )
     </div>
 </div>
 
@@ -108,14 +108,12 @@
 
         $('.item-image-upload').change(function (e) {
             var fileUpload = this.files[0];
-            var files = fileUpload.files;
+
             // Create FormData object
             var fileData = new FormData();
             fileData.append(fileUpload.name, fileUpload);
-            var theFile = fileUpload;
             fileData.append("itemId", $('#hidden-item-id').val())
             var imageId = '#image-' + this.id;
-            alert('imageId: ' + imageId);
 
             $.ajax({
                 type: 'post',
@@ -124,10 +122,7 @@
                 processData: false,
                 data: fileData,
                 success: function (response) {
-                    alert(response);
-                    //ShowImage(response);
                     $(imageId).html('<img src="/Item/GetImage?id=' + response + '" class="image-thumbnail-small"/>');
-                        //'<img src = "/Images/missing-image-232x150.png" class= "image-thumbnail-small" >'
                 },
                 error: function (response) {
                     alert('ERROR: ' + response)

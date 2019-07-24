@@ -11,7 +11,7 @@ namespace OddworxShop.ViewModels
         public decimal Price { get; set; }
 
         public ItemCategory Category { get; set; }
-        public Image Image { get; set; }
+        public int DefaultImage { get; set; }
         public bool IsActive { get; set; }
 
         public Shop Shop { get; set; }

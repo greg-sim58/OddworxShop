@@ -120,12 +120,12 @@ namespace OddworxShop.Controllers
 
                 model.Id = item.Id;
                 model.Description = item.Description;
-                model.Image = item.Image;
+                model.DefaultImage = item.DefaultImage;
                 model.Images = item.Images;
                 model.IsActive = item.IsActive;
                 model.Name = item.Name;
                 model.Price = item.Price;
-                //model.Shop = item.Shop_Id;
+                model.Shop = item.Shop;
 
                 if (item.Category != null)
                 {

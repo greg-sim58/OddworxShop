@@ -16,5 +16,6 @@ namespace OddworxShop.Data.Models
         public User AdminUser { get; set; }
 
         public virtual ShopCategory Category { get; set; }
+        public virtual IEnumerable<Item> Items { get; set; }
     }
 }

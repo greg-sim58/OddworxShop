@@ -116,6 +116,14 @@
     <Compile Include="Migrations\201907181522459_VarbinaryForImage1.Designer.cs">
       <DependentUpon>201907181522459_VarbinaryForImage1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201907231721200_ShopAddedListItems.cs" />
+    <Compile Include="Migrations\201907231721200_ShopAddedListItems.Designer.cs">
+      <DependentUpon>201907231721200_ShopAddedListItems.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201907241632394_ItemChanged.cs" />
+    <Compile Include="Migrations\201907241632394_ItemChanged.Designer.cs">
+      <DependentUpon>201907241632394_ItemChanged.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AdminUser.cs" />
     <Compile Include="Models\AdminUserRole.cs" />
@@ -152,6 +160,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201907181522459_VarbinaryForImage1.resx">
       <DependentUpon>201907181522459_VarbinaryForImage1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907231721200_ShopAddedListItems.resx">
+      <DependentUpon>201907231721200_ShopAddedListItems.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907241632394_ItemChanged.resx">
+      <DependentUpon>201907241632394_ItemChanged.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
