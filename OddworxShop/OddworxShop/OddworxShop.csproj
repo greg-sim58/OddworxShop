@@ -214,6 +214,8 @@
     <Compile Include="ViewModels\ShopItemViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\check.css" />
+    <Content Include="Content\checkbox-radio.css" />
     <Content Include="Content\materialize.css" />
     <Content Include="Content\materialize.min.css" />
     <Content Include="Content\materialize\css\materialize.css" />
