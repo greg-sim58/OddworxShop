@@ -19,7 +19,7 @@
         <thead>
             <tr>
                 <th>
-                    @*@Html.DisplayNameFor(model => model.Items[0].Image)*@
+                    
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.Items[0].Name)
@@ -44,7 +44,7 @@
             @Html.DisplayFor(modelItem => item.Id)
         </td>*@
             <td>
-                @*@Html.DisplayFor(modelItem => item.Image)*@
+                @*@Html.DisplayFor(modelItem => item.Images[0].ImageData)*@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Name)
@@ -74,7 +74,7 @@
             @Html.DisplayFor(modelItem => item.IsActive)
         </td>*@
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Edit", "AddOrEdit", new { shopId = @Model.ShopId, id = item.Id }) |
                 @Html.ActionLink("Details", "Details", new { id = item.Id }) |
                 @Html.ActionLink("Delete", "Delete", new { id = item.Id })
             </td>

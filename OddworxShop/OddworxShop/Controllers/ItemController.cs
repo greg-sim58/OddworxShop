@@ -13,6 +13,7 @@ using OddworxShop.ViewModels;
 
 namespace OddworxShop.Controllers
 {
+    [Authorize]
     public class ItemController : Controller
     {
         private DataContext db = new DataContext();
@@ -57,6 +58,48 @@ namespace OddworxShop.Controllers
             return View(item);
         }
 
+        public ActionResult AddOrEdit(int shopId, int? id)
+        {
+            ItemEditViewModel model = new ItemEditViewModel();
+
+            model.Shop = db.Shops.Find(shopId);
+
+            if (id != null)
+            {
+                var item = db.Items.Find(id);
+
+                if (item != null)
+                {
+                    model.Description = item.Description;
+                    model.IsActive = item.IsActive;
+                    model.Name = item.Name;
+                    model.Price = item.Price;
+                    model.Images = item.Images;
+                    model.Shop = item.Shop;
+                }
+                else
+                {
+                    model.Shop = db.Shops.Find(shopId);
+                    model.Images = new List<Image>();
+                }
+            }
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult AddOrEdit(ItemEditViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                return null;
+            }
+            else
+            {
+                return View(model);
+            }
+        }
+
         // GET: Item/Create
         public ActionResult Create(int shopId)
         {
@@ -64,6 +107,7 @@ namespace OddworxShop.Controllers
             using (DataContext ctx = new DataContext())
             {
                 model.Shop = ctx.Shops.Find(shopId);
+                model.Images = new List<Image>();
             }
             return View(model);
         }
@@ -245,9 +289,13 @@ namespace OddworxShop.Controllers
 
         public ActionResult  GetImage(int? id)
         {
-            var image = db.Images.Find(id);
-            byte[] data = image.ImageData;
-            return File(image.ImageData, "image/jpg");
+            if (id != null)
+            {
+                var image = db.Images.Find(id);
+                byte[] data = image.ImageData;
+                return File(image.ImageData, "image/jpg");
+            }
+            return Json(0, JsonRequestBehavior.AllowGet);
 
             //return Json(new { base64imgage = Convert.ToBase64String(data) }, JsonRequestBehavior.AllowGet);
         }

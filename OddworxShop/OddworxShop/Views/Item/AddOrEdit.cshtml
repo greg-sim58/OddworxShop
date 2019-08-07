@@ -1,0 +1,187 @@
+﻿
+
+@model OddworxShop.ViewModels.ItemEditViewModel
+
+@{
+    ViewBag.Title = "AddOrEdit";
+}
+<h6>AddOrEdit</h6>
+
+<div class="container">
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.Id, new { id = "hidden-item-id" })
+            @*@Html.HiddenFor(model => model.CreatedAt, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.HiddenFor(model => model.CreatedBy, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.HiddenFor(model => model.LastModifiedAt, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.HiddenFor(model => model.LastModifiedBy, new { htmlAttributes = new { @class = "form-control" } })*@
+            <div class="col s12 m6 center">
+                <div class="row">
+                    <h5>Edit item details</h5>
+                </div>
+            </div>
+            <br />
+
+            <div class="row">
+                <div class="form-group col s12 m6">
+                    @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label" })
+                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-red" })
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group col s12 m6">
+                    @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label" })
+                    @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group col s12 m6">
+                    @Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "control-label" })
+                    @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group col s12 m6">
+                    @Html.LabelFor(model => model.IsActive, htmlAttributes: new { @class = "control-label" })
+                    <div>
+                        @Html.CheckBoxFor(model => model.IsActive)
+                        @Html.ValidationMessageFor(model => model.IsActive, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <hr />
+
+            <div class="row">
+                <div class="col">
+                    
+                    <div class="file-field input-field">
+                        <div class="file-path-wrapper">
+                            <input type="file" name="fileInput" value="ADD PIC" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row teal lighten-5" style="padding:12px;">
+                <div>
+
+                    @if (Model.Images != null)
+                    {
+                        for (var i = 0; i < 6; i++)
+                        {
+                            <div class="col">
+
+                                <div class="file-field input-field">
+                                    <div>
+                                        @if (i < Model.Images.Count())
+                                        {
+                                            <span id="image-@i"><img src="data:image/jpeg;base64,@(Convert.ToBase64String(@Model.Images[i].ImageData))" class="image-thumbnail-small" /></span>
+                                            <input type="file" class="item-image-upload" id="@i">
+                                        }
+                                        else
+                                        {
+                                            <span id="image-@i"><img src="~/Images/missing-image-232x150.png" class="image-thumbnail-small" /></span>
+                                            <input type="file" class="item-image-upload" id="@i">
+                                        }
+                                    </div>
+                                    <div class="file-path-wrapper">
+                                        <input class="file-path validate" type="text" placeholder="Add a picture">
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group">
+                    <div class="col s12 m6">
+                        <input type="submit" value="Save" class="btn btn-default" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
+    <div>
+        @Html.ActionLink("Back to List", "ViewItemsByShop", "Item", new { shopId = @Model.Shop.Id }, null)
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+
+        $('.item-image-upload').change(function (e) {
+            var fileUpload = this.files[0];
+
+            // Create FormData object
+            var fileData = new FormData();
+            fileData.append(fileUpload.name, fileUpload);
+            fileData.append("itemId", $('#hidden-item-id').val())
+            var imageId = '#image-' + this.id;
+
+            $.ajax({
+                type: 'post',
+                url: '@Url.Action("SaveImage","Item")',
+                contentType: false, // Not to set any content header
+                processData: false,
+                data: fileData,
+                success: function (response) {
+                    $(imageId).html('<img src="/Item/GetImage?id=' + response + '" class="image-thumbnail-small"/>');
+                },
+                error: function (response) {
+                    alert('ERROR: ' + response)
+                }
+            });
+        });
+
+
+    });
+
+    function AddPicture(e,id) {
+        e.preventDefault();
+        alert('ShowImage ' + id);
+
+                    var fileUpload = this.files[0];
+            var files = fileUpload.files;
+            // Create FormData object
+            var fileData = new FormData();
+            fileData.append(fileUpload.name, fileUpload);
+            var theFile = fileUpload;
+            fileData.append("itemId", $('#hidden-item-id').val())
+            var imageId = '#image-' + this.id;
+            alert('imageId: ' + imageId);
+
+        $.ajax({
+            type: 'post',
+            url: '@Url.Action("SaveImage","Item")',
+            contentType: false, // Not to set any content header
+            processData: false,
+            data: fileData,
+            success: function (response) {
+                alert(response);
+                //ShowImage(response);
+                $(imageId).html('<img src="/Item/GetImage?id=' + response + '" class="image-thumbnail-small"/>');
+                //'<img src = "/Images/missing-image-232x150.png" class= "image-thumbnail-small" >'
+            },
+            error: function (response) {
+                alert('ERROR: ' + response)
+            }
+        })
+
+    }
+</script>
+
+

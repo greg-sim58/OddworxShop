@@ -338,6 +338,8 @@
     <Content Include="Views\Item\Index.cshtml" />
     <Content Include="Views\Item\ViewItemsByShop.cshtml" />
     <Content Include="Views\Shop\UserShops.cshtml" />
+    <Content Include="Views\Item\AddOrEdit.cshtml" />
+    <Content Include="Views\Item\_AddOrEdit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
