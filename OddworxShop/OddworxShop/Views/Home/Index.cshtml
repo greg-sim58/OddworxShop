@@ -1,32 +1,42 @@
-﻿
-<div class="container">
+﻿@model IEnumerable<OddworxShop.Data.Models.Item>
 
+<div class="container">
 
     <section class="section-welcome" style="height:auto;">
         <h1 class="blue-grey-text text-darken-2 center-align font-georgia">OddWorx</h1>
         <h5 class="center-align  grey-text"><span class="font-georgia">Coming soon!</span></h5>
     </section>
 
+    <div class="row">
+        <div class="col">
+            @Model.Count()
+        </div>
+    </div>
+
+
+
     <section class="section-cards">
         <div class="row">
-            <div class="col s12 m4 l3">
-                <div class="card">
-                    <div class="card-image">
-                        <a href="#"><img src="~/Images/art-backdrop-bright-53265.jpg" /></a>
 
-                        <span class="card-title">Card Title</span>
-                    </div>
-                    <div class="card-content">
-                        <p>
-                            I am a very simple card. I am good at containing small bits of information.
-                            I am convenient because I require little markup to use effectively.
-                        </p>
-                    </div>
-                    <div class="card-action">
-                        <a href="#">This is a link</a>
+            @foreach (var item in Model)
+            {
+                <div class="col s12 m4 l3">
+                    <div class="card">
+                        <div class="card-image">
+                            <a href="#"><img src="~/Images/art-backdrop-bright-53265.jpg" /></a>
+
+                            <span class="card-title">Card Title</span>
+                        </div>
+                        <div class="card-content">
+                            @Html.TextBoxFor(model => item.Name)
+                        </div>
+                        <div class="card-action">
+                            <a href="#">This is a link</a>
+                        </div>
                     </div>
                 </div>
-            </div>
+            }
+
 
             <div class="col s12 m4 l3">
                 <div class="card">
@@ -46,79 +56,7 @@
                 </div>
             </div>
 
-            <div class="col s12 m4 l3">
-                <div class="card">
-                    <div class="card-image">
-                        <img src="~/Images/art-creative-creativity-1660.jpg" />
-                        <span class="card-title">Card Title</span>
-                    </div>
-                    <div class="card-content">
-                        <p>
-                            I am a very simple card. I am good at containing small bits of information.
-                            I am convenient because I require little markup to use effectively.
-                        </p>
-                    </div>
-                    <div class="card-action">
-                        <a href="#">This is a link</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col s12 m4 l3">
-                <div class="card">
-                    <div class="card-image">
-                        <img src="~/Images/apartment-architecture-carpet-584399.jpg" />
-                        <span class="card-title">Card Title</span>
-                    </div>
-                    <div class="card-content">
-                        <p>
-                            I am a very simple card. I am good at containing small bits of information.
-                            I am convenient because I require little markup to use effectively.
-                        </p>
-                    </div>
-                    <div class="card-action">
-                        <a href="#">This is a link</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col s12 m4 l3">
-                <div class="card">
-                    <div class="card-image">
-                        <img src="~/Images/art-backdrop-bright-53265.jpg" />
-                        <span class="card-title">Card Title</span>
-                    </div>
-                    <div class="card-content">
-                        <p>
-                            I am a very simple card. I am good at containing small bits of information.
-                            I am convenient because I require little markup to use effectively.
-                        </p>
-                    </div>
-                    <div class="card-action">
-                        <a href="#">This is a link</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col s12 m4 l3">
-                <div class="card">
-                    <div class="card-image">
-                        <img src="~/Images/art-backdrop-bright-53265.jpg" />
-                        <span class="card-title">Card Title</span>
-                    </div>
-                    <div class="card-content">
-                        <p>
-                            I am a very simple card. I am good at containing small bits of information.
-                            I am convenient because I require little markup to use effectively.
-                        </p>
-                    </div>
-                    <div class="card-action">
-                        <a href="#">This is a link</a>
-                    </div>
-                </div>
-            </div>
-
-            @*<div class="col s12 m4 l2">
+            @*    <div class="col s12 m4 l3">
                     <div class="card">
                         <div class="card-image">
                             <img src="~/Images/art-creative-creativity-1660.jpg" />
@@ -134,29 +72,9 @@
                             <a href="#">This is a link</a>
                         </div>
                     </div>
-                </div>*@
-
-
-
-            @*<div class="col s12 m4 l2">
-                    <div class="card">
-                        <div class="card-image">
-                            <img src="~/Images/art-backdrop-bright-53265.jpg" />
-                            <span class="card-title">Card Title</span>
-                        </div>
-                        <div class="card-content">
-                            <p>
-                                I am a very simple card. I am good at containing small bits of information.
-                                I am convenient because I require little markup to use effectively.
-                            </p>
-                        </div>
-                        <div class="card-action">
-                            <a href="#">This is a link</a>
-                        </div>
-                    </div>
                 </div>
 
-                <div class="col s12 m4 l2">
+                <div class="col s12 m4 l3">
                     <div class="card">
                         <div class="card-image">
                             <img src="~/Images/apartment-architecture-carpet-584399.jpg" />
@@ -174,11 +92,28 @@
                     </div>
                 </div>
 
-                <div class="col s12 m4 l2">
+                <div class="col s12 m4 l3">
                     <div class="card">
                         <div class="card-image">
+                            <img src="~/Images/art-backdrop-bright-53265.jpg" />
+                            <span class="card-title">Card Title</span>
+                        </div>
+                        <div class="card-content">
+                            <p>
+                                I am a very simple card. I am good at containing small bits of information.
+                                I am convenient because I require little markup to use effectively.
+                            </p>
+                        </div>
+                        <div class="card-action">
+                            <a href="#">This is a link</a>
+                        </div>
+                    </div>
+                </div>
 
-                            <img src="~/Images/bricks-brickwall-indoors-112811.jpg" />
+                <div class="col s12 m4 l3">
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="~/Images/art-backdrop-bright-53265.jpg" />
                             <span class="card-title">Card Title</span>
                         </div>
                         <div class="card-content">
@@ -192,7 +127,6 @@
                         </div>
                     </div>
                 </div>*@
-
 
         </div>
     </section>

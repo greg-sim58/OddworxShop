@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OddworxShop.Data.DAL;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -10,7 +11,13 @@ namespace OddworxShop.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            using (DataContext ctx = new DataContext())
+            {
+                var model = ctx.Items.ToList();
+
+                return View(model);
+            }
+            
         }
 
         public ActionResult Front()
