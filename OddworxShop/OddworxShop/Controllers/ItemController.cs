@@ -267,6 +267,7 @@ namespace OddworxShop.Controllers
                                 if (item != null)
                                 {
                                     item.Images.Add(image);
+                                    item.DefaultImage = image.Id;
                                 }
                                 db.Entry(item).State = EntityState.Modified;
                                 db.SaveChanges();
