@@ -289,7 +289,7 @@ namespace OddworxShop.Controllers
 
         public ActionResult  GetImage(int? id)
         {
-            if (id != null)
+            if (id != null && id != 0)
             {
                 var image = db.Images.Find(id);
                 byte[] data = image.ImageData;

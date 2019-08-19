@@ -15,6 +15,8 @@ namespace OddworxShop.Controllers
             {
                 var model = ctx.Items.ToList();
 
+                
+
                 return View(model);
             }
             
