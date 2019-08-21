@@ -288,6 +288,8 @@ namespace OddworxShop.Controllers
             return Json("No picture selected", JsonRequestBehavior.AllowGet);
         }
 
+        [HttpGet]
+        [AllowAnonymous]
         public ActionResult  GetImage(int? id)
         {
             if (id != null && id != 0)
