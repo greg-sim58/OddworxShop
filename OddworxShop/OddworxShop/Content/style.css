@@ -5,6 +5,37 @@
  *
  * Made By MaterializeCSS.com
  */
+html, body {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+nav {
+    box-shadow: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+}
+
+.btn {
+    box-shadow: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+}
+
+.content {
+    flex: 1 0 auto;
+}
+
+.footer {
+    flex-shrink: 0;
+    min-height: 4rem;
+    background-color: #b71c1c;
+}
+
 
 .icon-block {
   padding: 0 15px;
@@ -24,3 +55,47 @@
     border: 6px solid white;
     background-color: red;
 }
+
+/* ----------------------- CARDS ----------------------------------------*/
+.card .card-image {
+    min-height: 16rem;
+    background-color: #e0f2f1;
+}
+
+.card .card-content {
+    padding: 2px;
+    border-radius: 0 0 0px 0px;
+    background-color: aquamarine;
+}
+    .card .card-content input {
+        padding-left:2px;
+        border-radius: 0 0 0px 0px;
+        background-color: aquamarine;
+        color: grey;
+        border-bottom: 0px solid black !important;
+        font-weight:600;
+    }
+
+.card .card-description {
+    position: relative;
+    background-color: #fff3e0;
+    border-top: 1px solid rgba(160, 160, 160, 0.2);
+    padding: 2px !important;
+    /*z-index: 2;*/
+}
+
+    .card .card-description a:not(.btn):not(.btn-large):not(.btn-floating) {
+        color: #ffab40;
+        margin-right: 20px;
+        transition: color .3s ease;
+        text-transform: none;
+    }
+
+        .card .card-description a:not(.btn):not(.btn-large):not(.btn-floating):hover {
+            color: #ffd8a6;
+        }
+
+    .card .card-description + .card-reveal {
+        z-index: 1;
+        padding-bottom: 64px;
+    }

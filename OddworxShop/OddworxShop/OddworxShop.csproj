@@ -340,6 +340,7 @@
     <Content Include="Views\Shop\UserShops.cshtml" />
     <Content Include="Views\Item\AddOrEdit.cshtml" />
     <Content Include="Views\Item\_AddOrEdit.cshtml" />
+    <Content Include="Views\Home\ShowItemsDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -31,5 +31,7 @@ namespace OddworxShop.Data.DAL
         public System.Data.Entity.DbSet<OddworxShop.Data.Models.Image> Images { get; set; }
         public System.Data.Entity.DbSet<OddworxShop.Data.Models.AdminUser> AdminUser { get; set; }
         public System.Data.Entity.DbSet<OddworxShop.Data.Models.AdminUserRole> AdminUserRole { get; set; }
+
+        
     }
 }

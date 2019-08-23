@@ -15,17 +15,15 @@ namespace OddworxShop.Controllers
             {
                 var model = ctx.Items.ToList();
 
-                
-
                 return View(model);
             }
-            
         }
 
         public ActionResult Front()
         {
             return View();
         }
+
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
@@ -37,6 +35,11 @@ namespace OddworxShop.Controllers
         {
             ViewBag.Message = "Your contact page.";
 
+            return View();
+        }
+
+        public ActionResult ShowItemsDetails(int? id)
+        {
             return View();
         }
     }
