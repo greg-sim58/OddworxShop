@@ -1,4 +1,6 @@
 ﻿using OddworxShop.Data.DAL;
+using OddworxShop.Data.Models;
+using OddworxShop.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +15,7 @@ namespace OddworxShop.Controllers
         {
             using (DataContext ctx = new DataContext())
             {
-                var model = ctx.Items.ToList();
+                var model = ctx.Items.Include("Shop").ToList();
 
                 return View(model);
             }
@@ -40,7 +42,26 @@ namespace OddworxShop.Controllers
 
         public ActionResult ShowItemsDetails(int? id)
         {
-            return View();
+            ShowItemDetailsViewModel model = new ShowItemDetailsViewModel();
+
+            if (id != null)
+            {
+                using (DataContext ctx = new DataContext())
+                {
+                    var item = ctx.Items.Find(id);
+
+                    if (item != null)
+                    {
+                        model.Description = item.Description;
+                        model.DefaultImage = item.DefaultImage;
+                        model.Id = item.Id;
+                        model.Name = item.Name;
+                        model.Price = item.Price;
+                    }
+                }
+            }
+
+            return View(model);
         }
     }
 }

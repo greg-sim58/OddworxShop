@@ -76,6 +76,62 @@ nav {
         font-weight:600;
     }
 
+.card .card-name {
+    color: grey;
+    font-size: 15px;
+    padding: 0px;
+    border-bottom: 0px;
+    height:20px;
+}
+
+    .card .card-name input {
+        padding-left: 1px;
+        border-radius: 0 0 0px 0px;
+        color: grey;
+        border-bottom: 0px solid black !important;
+        font-weight: 450;
+        margin: 0px;
+        line-height: 14px;
+    }
+
+.card .card-price {
+    color: grey;
+    font-size: 15px;
+    padding: 0px;
+    border-bottom: 0px;
+    margin: 0px;
+}
+
+    .card .card-price input {
+        padding: 0px;
+        margin: 0px;
+        border-radius: 0 0 0px 0px;
+        color: black;
+        border-bottom: 0px solid black !important;
+        font-weight: 500;
+        line-height: 12px;
+    }
+
+.card .card-shop {
+    color: grey;
+    font-size: 15px;
+    padding: 0px;
+    border-bottom: 0px;
+    margin: 0px;
+}
+
+    .card .card-shop input {
+        padding: 0px;
+        margin: 0px;
+        border-radius: 0 0 0px 0px;
+        color: #43A047;
+        border-bottom: 0px solid black !important;
+        font-size: 11px;
+        font-weight: 600;
+        line-height: 14px;
+        text-transform: uppercase;
+    }
+
 .card .card-description {
     position: relative;
     background-color: #fff3e0;

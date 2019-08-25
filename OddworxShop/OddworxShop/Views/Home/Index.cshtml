@@ -20,11 +20,17 @@
 
                             <span class="card-title"></span>
                         </div>
-                        <div class="card-content">
+                        <div class="card-name">
                             @Html.TextBoxFor(model => item.Name)
                         </div>
+                        <div class="card-shop">
+                            @Html.TextBoxFor(model => item.Shop.Name)
+                        </div>
+                        <div class="card-price">
+                            @Html.TextBoxFor(model => item.Price)
+                        </div>
                         <div class="card-description">
-                            <a href="" onclick="ShowItemDetails(event);"><span class="text-limit" style="display:block;text-overflow: ellipsis;width: 100%;overflow: hidden; white-space: nowrap;"> @item.Description</span></a>
+                            <a href='@Url.Action("ShowItemsDetails","Home")?id=@item.Id'><span class="text-limit" style="display:block;text-overflow: ellipsis;width: 100%;overflow: hidden; white-space: nowrap;"> @item.Description</span></a>
                         </div>
                     </div>
                 </div>
@@ -52,8 +58,22 @@
 </div>
 
 <script>
-    function ShowItemDetails(e) {
+    function ShowItemDetails(e, itemId) {
         e.preventDefault();
-        alert('ShowItemDetails');
+        var id = itemId;
+        alert('ShowItemDetails ' + id);
+
+        @*$.ajax({
+            type: 'GET',
+            url: '@Url.Action("ShowItemsDetails", "Home")',
+            data: { id: itemId },
+            success: function (response) {
+                alert('Success');
+            },
+            error: function (response) {
+                alert('Error');
+            }
+        });*@
+
     }
 </script>
