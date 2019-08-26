@@ -17,37 +17,33 @@
             <img src="~/Images/art-backdrop-bright-53265.jpg" style="width:100%;" />
             <img src="~/Images/art-creative-creativity-1660.jpg" style="width:100%;" />
         </div>
-        <div class="col s8" style="padding-top:4px; background-color:coral;">
+        <div class="col s8" style="padding-top:4px; background-color:transparent;">
             <img src='@Url.Action("GetImage","Item", new { id = Model.DefaultImage } )' style="width:100%;" />
         </div>
-        <div class="col s3" style="padding-top:4px; background-color:darkkhaki;">
-            As a Scrum Master you will be serving the Product Owner and Development Team in their goal of providing Business value to the company’s Stakeholders and Customers.
+        <div class="col s3" style="padding-top:4px;  padding-left:30px; background-color:transparent;">
+            <div class="row">
+                <div class="col" style="font-size:20px; font-weight:500;">
+                    ZAR @Model.Price
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col">
+                    <button class="btn btn-danger" style="width:100%;">Contact seller</button>
+                </div>
+            </div>
         </div>
-    </div> @*<div class="row">
-            <div class="col s2 l1 xl1" style="border: solid 1px lightgrey; padding-top:4px;">
-                <img src="~/Images/apartment-architecture-carpet-584399.jpg" style="width:100%;"/>
-                <img src="~/Images/art-backdrop-bright-53265.jpg" style="width:100%;"/>
-                <img src="~/Images/art-creative-creativity-1660.jpg" style="width:100%;"/>
-            </div>
-            <div class="col s8 l9 xl8" style="padding-top:4px; background-color:green;">
-                <img src='@Url.Action("GetImage","Item", new { id = Model.DefaultImage } )' style="height:450px;"/>
-            </div>
-            <div class="col s2 l2 xl3" style="background-color:coral;">
-                skdjlsaj
-            </div>
-        </div>*@
-
-
+    </div>
 
     <div class="row" style="border-bottom:solid 1px lightgrey;">
 
     </div>
 
-    <div class="row">
+    @*<div class="row">
         <div class="col">
             ZAR @Model.Price
         </div>
-    </div>
+    </div>*@
 
     <div class="row">
         <div class="col">
@@ -61,11 +57,11 @@
         </div>
     </div>
 
-    <div class="row">
+    @*<div class="row">
         <div class="col">
             <button>Contact seller</button>
         </div>
-    </div>
+    </div>*@
 
     <div class="row">
         <div class="col">
@@ -79,47 +75,12 @@
             Shopname
         </div>
     </div>
+    <div class="row">
+        <div class="col">
+            Location
+        </div>
+    </div>
 
-    @*<div>
-            <h4>Item</h4>
-            <hr />
-            <dl class="dl-horizontal">
-                <dt>
-                    @Html.DisplayNameFor(model => model.Name)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.Name)
-                </dd>
-
-                <dt>
-                    @Html.DisplayNameFor(model => model.Description)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.Description)
-                </dd>
-
-                <dt>
-                    @Html.DisplayNameFor(model => model.Price)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.Price)
-                </dd>
-
-                <dt>
-                    @Html.DisplayNameFor(model => model.DefaultImage)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.DefaultImage)
-                </dd>
-
-
-
-            </dl>
-        </div>*@
 </div>
 <p>
     @*@Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
