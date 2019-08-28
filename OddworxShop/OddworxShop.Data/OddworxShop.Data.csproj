@@ -124,6 +124,10 @@
     <Compile Include="Migrations\201907241632394_ItemChanged.Designer.cs">
       <DependentUpon>201907241632394_ItemChanged.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201908271532508_LocationAddedToShop.cs" />
+    <Compile Include="Migrations\201908271532508_LocationAddedToShop.Designer.cs">
+      <DependentUpon>201908271532508_LocationAddedToShop.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AdminUser.cs" />
     <Compile Include="Models\AdminUserRole.cs" />
@@ -166,6 +170,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201907241632394_ItemChanged.resx">
       <DependentUpon>201907241632394_ItemChanged.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908271532508_LocationAddedToShop.resx">
+      <DependentUpon>201908271532508_LocationAddedToShop.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -57,6 +57,8 @@ namespace OddworxShop.Controllers
                         model.Id = item.Id;
                         model.Name = item.Name;
                         model.Price = item.Price;
+                        model.Shop = item.Shop;
+                        model.Images = item.Images;
                     }
                 }
             }

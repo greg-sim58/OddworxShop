@@ -14,6 +14,7 @@ namespace OddworxShop.Data.Models
         public string ContactPhone { get; set; }
         public string WebSite { get; set; }
         public User AdminUser { get; set; }
+        public string Location { get; set; }
 
         public virtual ShopCategory Category { get; set; }
         public virtual IEnumerable<Item> Items { get; set; }
